@@ -1,19 +1,3 @@
-export type RolUsuario = 'admin' | 'tecnico' | 'ciudadano' | 'invitado';
-
-export interface Usuario {
-  id: number;
-  nombre: string;
-  apellido: string;
-  correo: string;
-  rol: RolUsuario;
-  area: string;
-  iniciales: string;
-  color: string;
-  activo: boolean;
-  ultimoAcceso: string;
-  totalReportes: number;
-}
-
 export interface Tecnico {
   id: number;
   nombre: string;
@@ -27,21 +11,8 @@ export interface Tecnico {
   correo: string;
 }
 
-export interface LoginDto {
-  correo: string;
-  password: string;
-}
-
-export interface AuthResponse {
-  token: string;
-  usuario: Usuario;
-}
-
-export interface CrearUsuarioDto {
-  nombre: string;
-  apellido: string;
-  correo: string;
-  password: string;
-  rol: RolUsuario;
-  area: string;
-}
+export const TECNICOS_MOCK: Tecnico[] = [
+  { id: 1, nombre: 'Roberto Sánchez', iniciales: 'RS', color: '#F0A030', especialidad: 'Climatización / HVAC', asignados: 3, resueltosEsteMes: 12, tiempoPromedio: '3.2d', disponible: true, correo: 'r.sanchez@unistmo.edu.mx' },
+  { id: 2, nombre: 'María Torres', iniciales: 'MT', color: '#18C96A', especialidad: 'Electricidad e iluminación', asignados: 5, resueltosEsteMes: 18, tiempoPromedio: '2.8d', disponible: false, correo: 'm.torres@unistmo.edu.mx' },
+  { id: 3, nombre: 'Carlos Vega', iniciales: 'CV', color: '#10C8B0', especialidad: 'Plomería y sanitarios', asignados: 1, resueltosEsteMes: 9, tiempoPromedio: '4.5d', disponible: true, correo: 'c.vega@unistmo.edu.mx' },
+];

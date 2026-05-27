@@ -1,1 +1,11 @@
-<p>bottom-nav works!</p>
+<nav class="bottom-nav">
+  <a
+    *ngFor="let item of navItems"
+    [routerLink]="item.path"
+    routerLinkActive="active"
+    class="nav-item"
+  >
+    <span class="nav-icon">{{ item.icon }}</span>
+    <span class="nav-label">{{ item.label }}</span>
+  </a>
+</nav>

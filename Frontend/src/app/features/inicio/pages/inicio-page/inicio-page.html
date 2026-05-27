@@ -1,1 +1,167 @@
-<p>inicio-page works!</p>
+<!-- HEADER -->
+<div class="header">
+  <div class="logo"><span class="lb">CR</span> Campus<em>Report</em></div>
+  <div class="hsep"></div>
+  <div class="notif">🔔<div class="ndot"></div></div>
+  <div class="av">LJ</div>
+</div>
+
+<!-- SEARCH -->
+<div class="sb">
+  <div class="sb-in">
+    <span class="sb-ico">🔍</span>
+    <input
+      type="text"
+      placeholder="Buscar zona, código, descripción..."
+      (input)="onBuscar($any($event.target).value)"
+    />
+  </div>
+</div>
+
+<!-- STATS -->
+<div class="stats">
+  <div class="scard">
+    <div class="slbl">Pendientes</div>
+    <div class="sval red">{{ resumen().pendientes }}</div>
+    <div class="stnd">Sin atender</div>
+  </div>
+  <div class="scard">
+    <div class="slbl">En proceso</div>
+    <div class="sval amber">{{ resumen().enProceso }}</div>
+    <div class="stnd">En atención</div>
+  </div>
+  <div class="scard">
+    <div class="slbl">Resueltas</div>
+    <div class="sval green">{{ resumen().resueltas }}</div>
+    <div class="stnd">Este mes</div>
+  </div>
+  <div class="scard">
+    <div class="slbl">Total activas</div>
+    <div class="sval">{{ resumen().total }}</div>
+    <div class="stnd">T. prom: 4.2d</div>
+  </div>
+</div>
+
+<!-- MAPA -->
+<div class="msec">
+  <div class="secrow">
+    <span class="sectitle">🗺️ Mapa del campus</span>
+    <span class="seclink">Ver todo</span>
+  </div>
+  <div class="mbox">
+    <svg viewBox="0 0 340 200" xmlns="http://www.w3.org/2000/svg">
+      <rect width="340" height="200" fill="#080A10"/>
+      <!-- Carreteras -->
+      <rect x="0" y="70" width="340" height="10" fill="#0A0D14"/>
+      <rect x="0" y="138" width="340" height="10" fill="#0A0D14"/>
+      <rect x="68" y="0" width="7" height="200" fill="#0A0D14"/>
+      <rect x="186" y="0" width="7" height="200" fill="#0A0D14"/>
+      <rect x="272" y="0" width="7" height="200" fill="#0A0D14"/>
+      <!-- Edificios fila 1 -->
+      <rect x="8"   y="8" width="52" height="54" rx="4" fill="#111520" stroke="#1E2740" stroke-width="1"/>
+      <text x="34"  y="36" text-anchor="middle" fill="#404E6A" font-size="7" font-family="monospace">Edif. A</text>
+      <rect x="84"  y="8" width="94" height="54" rx="4" fill="#111520" stroke="#1E2740" stroke-width="1"/>
+      <text x="131" y="36" text-anchor="middle" fill="#404E6A" font-size="7" font-family="monospace">Rectoría</text>
+      <rect x="196" y="8" width="68" height="54" rx="4" fill="#111520" stroke="#1E2740" stroke-width="1"/>
+      <text x="230" y="36" text-anchor="middle" fill="#404E6A" font-size="6" font-family="monospace">Lab.Cómp.</text>
+      <rect x="282" y="8" width="50" height="54" rx="4" fill="#111520" stroke="#1E2740" stroke-width="1"/>
+      <text x="307" y="36" text-anchor="middle" fill="#404E6A" font-size="6" font-family="monospace">Biblio.</text>
+      <!-- Edificios fila 2 -->
+      <rect x="8"   y="88" width="52" height="42" rx="4" fill="#111520" stroke="#1E2740" stroke-width="1"/>
+      <text x="34"  y="112" text-anchor="middle" fill="#404E6A" font-size="6" font-family="monospace">Cafetería</text>
+      <rect x="84"  y="88" width="94" height="42" rx="4" fill="#111520" stroke="#1E2740" stroke-width="1"/>
+      <text x="131" y="112" text-anchor="middle" fill="#404E6A" font-size="6" font-family="monospace">Aula Magna</text>
+      <rect x="196" y="88" width="68" height="42" rx="4" fill="#111520" stroke="#1E2740" stroke-width="1"/>
+      <text x="230" y="112" text-anchor="middle" fill="#404E6A" font-size="6" font-family="monospace">Laborat.</text>
+      <rect x="282" y="88" width="50" height="42" rx="4" fill="#111520" stroke="#1E2740" stroke-width="1"/>
+      <text x="307" y="112" text-anchor="middle" fill="#404E6A" font-size="6" font-family="monospace">Servicios</text>
+      <!-- Edificios fila 3 -->
+      <rect x="8"   y="156" width="52" height="36" rx="4" fill="#111520" stroke="#1E2740" stroke-width="1"/>
+      <text x="34"  y="177" text-anchor="middle" fill="#404E6A" font-size="6" font-family="monospace">Estac.</text>
+      <rect x="84"  y="156" width="94" height="36" rx="4" fill="#111520" stroke="#1E2740" stroke-width="1"/>
+      <text x="131" y="177" text-anchor="middle" fill="#404E6A" font-size="6" font-family="monospace">Edificio D</text>
+      <rect x="196" y="156" width="68" height="36" rx="4" fill="#111520" stroke="#1E2740" stroke-width="1"/>
+      <text x="230" y="177" text-anchor="middle" fill="#404E6A" font-size="6" font-family="monospace">Talleres</text>
+      <rect x="282" y="156" width="50" height="36" rx="4" fill="#071510" stroke="#1E2740" stroke-width="1"/>
+      <!-- Pins dinámicos -->
+      <g *ngFor="let pin of pins"
+         class="pin"
+         (click)="abrirSheetPorCodigo(pin.codigo)">
+        <circle [attr.cx]="pin.x" [attr.cy]="pin.y" r="10"
+                [attr.fill]="getColorPin(pin.estado)" opacity="0.12"/>
+        <circle [attr.cx]="pin.x" [attr.cy]="pin.y" r="5.5"
+                [attr.fill]="getColorPin(pin.estado)"/>
+      </g>
+    </svg>
+    <div class="mleg">
+      <div class="ml"><div class="mld" style="background:#F05050"></div>Pendiente</div>
+      <div class="ml"><div class="mld" style="background:#F0A030"></div>En proceso</div>
+      <div class="ml"><div class="mld" style="background:#18C96A"></div>Resuelto</div>
+    </div>
+  </div>
+</div>
+
+<!-- FILTROS -->
+<div class="chips">
+  <div class="chip" [class.on]="filtroEstado()==='all'"
+       (click)="setFiltroEstado('all')">Todas · {{ resumen().total }}</div>
+  <div class="chip" [class.on]="filtroEstado()==='pendiente'"
+       (click)="setFiltroEstado('pendiente')">🔴 Pendientes · {{ resumen().pendientes }}</div>
+  <div class="chip" [class.on]="filtroEstado()==='proceso'"
+       (click)="setFiltroEstado('proceso')">🟡 En proceso · {{ resumen().enProceso }}</div>
+  <div class="chip" [class.on]="filtroEstado()==='resuelto'"
+       (click)="setFiltroEstado('resuelto')">🟢 Resueltas · {{ resumen().resueltas }}</div>
+  <div class="chip" [class.on]="filtroCategoria()==='Infraestructura'"
+       (click)="setFiltroCategoria('Infraestructura')">🏗️ Infraestructura</div>
+  <div class="chip" [class.on]="filtroCategoria()==='Servicios'"
+       (click)="setFiltroCategoria('Servicios')">⚡ Servicios</div>
+  <div class="chip" [class.on]="filtroCategoria()==='Limpieza'"
+       (click)="setFiltroCategoria('Limpieza')">🧹 Limpieza</div>
+</div>
+
+<!-- LISTA -->
+<div class="lsec">
+  <div class="lrow">
+    <span class="ltitle">Incidencias recientes</span>
+  </div>
+
+  @for (inc of incidenciasFiltradas(); track inc.id) {
+    <app-incidencia-card
+      [incidencia]="inc"
+      (verDetalle)="abrirSheet($event)"
+    />
+  } @empty {
+    <div class="empty">No hay incidencias con este filtro</div>
+  }
+</div>
+
+<!-- FAB -->
+<button class="fab" (click)="irAReportar()">＋</button>
+
+<!-- BOTTOM SHEET BACKDROP -->
+@if (mostrarSheet()) {
+  <div class="sbg" (click)="cerrarSheet()"></div>
+  <div class="sht">
+    <div class="shdrag"></div>
+    @if (incidenciaSeleccionada(); as inc) {
+      <div class="shtitle">{{ inc.titulo }}</div>
+      <div class="shchips">
+        <span class="shc">{{ inc.categoria }}</span>
+        <span class="shc">📍 {{ inc.zona }}</span>
+        <span class="shc codigo">{{ inc.codigo }}</span>
+      </div>
+      <div class="tllbl">Seguimiento</div>
+      <div class="tl">
+        @for (item of inc.timeline; track item.label) {
+          <div class="tli"
+               [class.d]="item.completado"
+               [class.c]="item.activo">
+            {{ item.label }}<br>
+            <span class="tlid">{{ item.fecha ?? 'Pendiente' }}</span>
+          </div>
+        }
+      </div>
+      <button class="shbtn" (click)="irADetalle()">Ver detalle completo →</button>
+    }
+  </div>
+}

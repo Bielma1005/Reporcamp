@@ -1,1 +1,14 @@
-<p>incidencia-card works!</p>
+<div class="icard" (click)="onClick()">
+  <div class="iico" [style.background]="getBgColor()">
+    {{ getIcono() }}
+  </div>
+  <div class="ibody">
+    <div class="ititle">{{ incidencia.titulo }}</div>
+    <div class="imeta">
+      <span class="izone">{{ incidencia.zona }}</span>
+      <span class="idate">· {{ getFecha() }}</span>
+      <span class="stag" [ngClass]="getTagClass()">{{ getTagLabel() }}</span>
+    </div>
+  </div>
+  <div class="iarr">›</div>
+</div>
