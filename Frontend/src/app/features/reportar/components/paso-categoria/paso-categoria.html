@@ -1,1 +1,19 @@
-<p>paso-categoria works!</p>
+<div class="paso-wrap">
+  <h2 class="paso-h">¿Qué tipo de problema?</h2>
+  <p class="paso-sub">Selecciona la categoría que mejor describe la incidencia.</p>
+
+  <div class="cat-grid">
+    @for (c of categorias; track c.id) {
+      <div
+        class="cat-card"
+        [class.sel]="seleccionada === c.id"
+        [class.cat-full]="c.id === 'Limpieza'"
+        (click)="seleccionar(c.id)"
+      >
+        <div class="cat-ico">{{ c.icon }}</div>
+        <div class="cn">{{ c.nombre }}</div>
+        <div class="cd">{{ c.desc }}</div>
+      </div>
+    }
+  </div>
+</div>

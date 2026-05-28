@@ -1,1 +1,34 @@
-<p>paso-descripcion works!</p>
+<div class="paso-wrap">
+  <h2 class="paso-h">Describe el problema</h2>
+  <p class="paso-sub">Danos el mayor detalle posible para que el equipo actúe rápido.</p>
+
+  <div class="field">
+    <label class="flbl">Zona del campus</label>
+    <select [(ngModel)]="datos.zona" (change)="onCambio()">
+      <option value="">Selecciona una zona...</option>
+      @for (z of zonas; track z) {
+        <option [value]="z">{{ z }}</option>
+      }
+    </select>
+  </div>
+
+  <div class="field">
+    <label class="flbl">Ubicación exacta</label>
+    <input
+      type="text"
+      [(ngModel)]="datos.ubicacionExacta"
+      (input)="onCambio()"
+      placeholder="Ej: Baño 2do piso, junto a la escalera"
+    />
+  </div>
+
+  <div class="field">
+    <label class="flbl">Descripción del problema</label>
+    <textarea
+      [(ngModel)]="datos.descripcion"
+      (input)="onCambio()"
+      rows="5"
+      placeholder="¿Qué está fallando? ¿Desde cuándo? ¿Qué tan urgente es?"
+    ></textarea>
+  </div>
+</div>
