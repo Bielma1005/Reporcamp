@@ -1,1 +1,35 @@
-<p>tab-tecnicos works!</p>
+@for (t of tecnicos(); track t.id) {
+  <div class="tcard">
+    <!-- Cabecera del técnico -->
+    <div class="tc-top">
+      <div class="tc-av" [style.background]="t.color + '20'" [style.color]="t.color">
+        {{ t.iniciales }}
+      </div>
+      <div class="tc-info">
+        <div class="tc-name">{{ t.nombre }}</div>
+        <div class="tc-esp">{{ t.especialidad }}</div>
+        <span class="disp-badge" [ngClass]="getDispClass(t.disponible)">
+          {{ getDispLabel(t.disponible) }}
+        </span>
+      </div>
+    </div>
+
+    <!-- Estadísticas del técnico -->
+    <div class="tc-stats">
+      <div class="tcs">
+        <div class="tcs-lbl">Asignados</div>
+        <div class="tcs-val" [style.color]="getCargaColor(t.asignados)">{{ t.asignados }}</div>
+      </div>
+      <div class="tcs">
+        <div class="tcs-lbl">Resueltos</div>
+        <div class="tcs-val green">{{ t.resueltosEsteMes }}</div>
+      </div>
+      <div class="tcs">
+        <div class="tcs-lbl">T. prom.</div>
+        <div class="tcs-val mono">{{ t.tiempoPromedio }}</div>
+      </div>
+    </div>
+  </div>
+} @empty {
+  <div class="empty">No hay técnicos registrados</div>
+}

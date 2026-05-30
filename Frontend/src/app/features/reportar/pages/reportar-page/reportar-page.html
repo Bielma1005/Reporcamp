@@ -1,1 +1,80 @@
-<p>reportar-page works!</p>
+<!-- HEADER -->
+<div class="header">
+  <button class="back-btn" (click)="goBack()">← Atrás</button>
+  <div class="logo">Campus<em>Report</em></div>
+  <div class="hsep"></div>
+  <div class="step-ind">Paso {{ paso() }} de 4</div>
+</div>
+
+<!-- BARRA DE PROGRESO -->
+@if (!enviado()) {
+  <div class="progress-wrap">
+    <div class="progress-steps">
+      @for (p of pasos; track p.n) {
+        <div class="ps"
+             [class.done]="paso() > p.n"
+             [class.on]="paso() === p.n">
+        </div>
+      }
+    </div>
+    <div class="progress-labels">
+      @for (p of pasos; track p.n) {
+        <span class="pl"
+              [class.on]="paso() === p.n"
+              [class.done]="paso() > p.n">
+          {{ p.label }}
+        </span>
+      }
+    </div>
+  </div>
+}
+
+<!-- CONTENIDO DE PASOS -->
+@if (!enviado()) {
+  @switch (paso()) {
+    @case (1) {
+      <app-paso-categoria
+        (categoriaSeleccionada)="onCategoria($event)"
+      />
+    }
+    @case (2) {
+      <app-paso-descripcion
+        (datosActualizados)="onDescripcion($event)"
+      />
+    }
+    @case (3) {
+      <app-paso-foto
+        (datosActualizados)="onFoto($event)"
+      />
+    }
+    @case (4) {
+      <app-paso-confirmar
+        [categoria]="categoria()"
+        [descripcion]="descripcion()"
+        [foto]="foto()"
+      />
+    }
+  }
+
+  <!-- BARRA DE BOTONES -->
+  <div class="bottom-bar">
+    @if (paso() > 1) {
+      <button class="btn-s" (click)="anterior()">←</button>
+    }
+    <button
+      class="btn-p"
+      [disabled]="!puedeAvanzar() || cargando()"
+      (click)="siguiente()"
+    >
+      {{ labelBoton() }}
+    </button>
+  </div>
+}
+
+<!-- PANTALLA DE ÉXITO -->
+@if (enviado()) {
+  <app-reporte-exitoso
+    [codigo]="codigoGenerado()"
+    (irAInicio)="irAInicio()"
+  />
+}

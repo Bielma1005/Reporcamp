@@ -1,1 +1,42 @@
-<p>paso-confirmar works!</p>
+<div class="paso-wrap">
+  <h2 class="paso-h">Confirma tu reporte</h2>
+  <p class="paso-sub">Revisa todo antes de enviar. Recibirás un código único de seguimiento.</p>
+
+  <div class="confirm-card">
+    <div class="cf-row">
+      <span class="cflbl">Categoría</span>
+      <span class="cfval">{{ getIcono() }} {{ categoria ?? '—' }}</span>
+    </div>
+    <div class="cf-row">
+      <span class="cflbl">Zona</span>
+      <span class="cfval">{{ descripcion.zona || '—' }}</span>
+    </div>
+    <div class="cf-row">
+      <span class="cflbl">Ubicación</span>
+      <span class="cfval">{{ descripcion.ubicacionExacta || 'Sin especificar' }}</span>
+    </div>
+    <div class="cf-row">
+      <span class="cflbl">Descripción</span>
+      <span class="cfval">{{ getDescCorta() }}</span>
+    </div>
+    <div class="cf-row">
+      <span class="cflbl">Foto</span>
+      <span class="cfval" [class.ok]="foto.fotoPreview">
+        {{ foto.fotoPreview ? 'Foto adjunta ✓' : 'Sin foto' }}
+      </span>
+    </div>
+    <div class="cf-row">
+      <span class="cflbl">Ubicación en mapa</span>
+      <span class="cfval" [class.ok]="foto.pinX !== null">
+        {{ foto.pinX !== null ? 'Marcada en mapa ✓' : 'No marcada' }}
+      </span>
+    </div>
+  </div>
+
+  <!-- Preview foto si existe -->
+  @if (foto.fotoPreview) {
+    <div class="foto-preview-wrap">
+      <img [src]="foto.fotoPreview" alt="Foto adjunta" class="foto-preview" />
+    </div>
+  }
+</div>

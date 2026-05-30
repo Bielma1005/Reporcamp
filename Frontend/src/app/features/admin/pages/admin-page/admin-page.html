@@ -1,1 +1,45 @@
-<p>admin-page works!</p>
+<!-- HEADER -->
+<div class="header">
+  <div class="logo"><span class="lb">CR</span> Campus<em>Report</em></div>
+  <div class="hsep"></div>
+  <span class="admin-tag">ADMIN</span>
+  <div class="av">AA</div>
+</div>
+
+<!-- PAGE TITLE -->
+<div class="pg-head">
+  <h1 class="pg-title">Administración</h1>
+  <p class="pg-sub">Gestión completa de incidencias y usuarios</p>
+</div>
+
+<!-- TABS -->
+<div class="sec-tabs">
+  @for (tab of tabs; track tab.id) {
+    <button
+      class="stab"
+      [class.on]="tabActivo() === tab.id"
+      (click)="setTab(tab.id)"
+    >
+      {{ tab.icon }} {{ tab.label }}
+    </button>
+  }
+</div>
+
+<!-- CONTENIDO POR TAB -->
+@switch (tabActivo()) {
+  @case ('incidencias') {
+    <app-tab-incidencias/>
+  }
+  @case ('usuarios') {
+    <app-tab-usuarios/>
+  }
+  @case ('tecnicos') {
+    <app-tab-tecnicos/>
+  }
+  @case ('config') {
+    <app-tab-configuracion/>
+  }
+}
+
+<!-- FAB -->
+<button class="fab" (click)="onFab()">＋</button>

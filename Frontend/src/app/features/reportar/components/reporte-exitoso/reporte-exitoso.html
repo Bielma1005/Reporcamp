@@ -1,1 +1,18 @@
-<p>reporte-exitoso works!</p>
+<div class="success-wrap">
+  <div class="sico">✅</div>
+  <h2 class="sh">¡Reporte enviado!</h2>
+  <p class="sp">
+    Tu incidencia fue registrada exitosamente.<br>
+    El equipo de mantenimiento fue notificado automáticamente.
+  </p>
+
+  <div class="code-box">
+    <div class="clbl">Código de seguimiento</div>
+    <div class="cval">{{ codigo }}</div>
+    <div class="cinfo">Guarda este código para rastrear tu reporte</div>
+  </div>
+
+  <button class="btn-inicio" (click)="irAInicio.emit()">
+    ← Volver al inicio
+  </button>
+</div>

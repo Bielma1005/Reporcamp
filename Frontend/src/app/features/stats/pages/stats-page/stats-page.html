@@ -1,1 +1,187 @@
-<p>stats-page works!</p>
+<!-- HEADER -->
+<div class="header">
+  <div class="logo"><span class="lb">CR</span> Campus<em>Report</em></div>
+  <div class="hsep"></div>
+  <button class="exp-btn" (click)="exportarCSV()">⬇ .csv</button>
+</div>
+
+<!-- PAGE HEADER -->
+<div class="pg-head">
+  <h1 class="pg-title">Transparencia</h1>
+  <p class="pg-sub">Datos públicos de mantenimiento · Universidad del Istmo</p>
+</div>
+
+<!-- CHIPS DE PERÍODO -->
+<div class="period-chips">
+  @for (p of periodos; track p) {
+    <div class="pchip"
+         [class.on]="periodo() === p"
+         (click)="setPeriodo(p)">
+      {{ p }}
+    </div>
+  }
+</div>
+
+<!-- MÉTRICAS -->
+<div class="metrics">
+  <div class="mc">
+    <div class="mc-lbl">Total incidencias</div>
+    <div class="mc-val">{{ total() }}</div>
+    <div class="mc-trend">↑ <span class="tup">12%</span> vs anterior</div>
+  </div>
+  <div class="mc">
+    <div class="mc-lbl">Tasa de resolución</div>
+    <div class="mc-val green">{{ tasa() }}%</div>
+    <div class="mc-trend">↑ <span class="tdn">+5pts</span></div>
+  </div>
+  <div class="mc">
+    <div class="mc-lbl">T. prom. resolución</div>
+    <div class="mc-val amber">{{ tiempoProm() }}d</div>
+    <div class="mc-trend">↓ <span class="tdn">−0.8d</span></div>
+  </div>
+  <div class="mc">
+    <div class="mc-lbl">Resueltas a tiempo</div>
+    <div class="mc-val">{{ aTiempo() }}%</div>
+    <div class="mc-trend meta">Meta: <strong>80%</strong></div>
+  </div>
+</div>
+
+<!-- GRÁFICA EVOLUCIÓN MENSUAL -->
+<div class="cc">
+  <div class="cc-head">
+    <div class="cc-title">Evolución mensual</div>
+    <div class="cc-sub">Nuevas vs resueltas · 2025</div>
+  </div>
+  <div class="chart-legend">
+    <div class="cl"><div class="cld blue"></div>Nuevas</div>
+    <div class="cl"><div class="cld green"></div>Resueltas</div>
+  </div>
+  <svg [attr.viewBox]="'0 0 ' + CHART_W + ' ' + CHART_H"
+       class="line-chart">
+    <!-- Grid lines -->
+    <line x1="0" [attr.y1]="CHART_H*0.25" [attr.x2]="CHART_W" [attr.y2]="CHART_H*0.25" stroke="#1E2740" stroke-width="1"/>
+    <line x1="0" [attr.y1]="CHART_H*0.5"  [attr.x2]="CHART_W" [attr.y2]="CHART_H*0.5"  stroke="#1E2740" stroke-width="1"/>
+    <line x1="0" [attr.y1]="CHART_H*0.75" [attr.x2]="CHART_W" [attr.y2]="CHART_H*0.75" stroke="#1E2740" stroke-width="1"/>
+    <!-- Línea nuevas -->
+    <polyline
+      [attr.points]="puntosNuevas"
+      fill="none"
+      stroke="#4080FF"
+      stroke-width="2"
+      stroke-linejoin="round"
+    />
+    <!-- Línea resueltas -->
+    <polyline
+      [attr.points]="puntosResueltas"
+      fill="none"
+      stroke="#18C96A"
+      stroke-width="2"
+      stroke-linejoin="round"
+    />
+    <!-- Puntos nuevas -->
+    @for (d of evolucion; track d.mes; let i = $index) {
+      <circle
+        [attr.cx]="(i / (evolucion.length-1)) * CHART_W"
+        [attr.cy]="CHART_H - (d.nuevas / maxNuevas) * CHART_H"
+        r="3" fill="#4080FF"
+      />
+    }
+    <!-- Puntos resueltas -->
+    @for (d of evolucion; track d.mes; let i = $index) {
+      <circle
+        [attr.cx]="(i / (evolucion.length-1)) * CHART_W"
+        [attr.cy]="CHART_H - (d.resueltas / maxNuevas) * CHART_H"
+        r="3" fill="#18C96A"
+      />
+    }
+  </svg>
+  <!-- Labels eje X -->
+  <div class="x-labels">
+    @for (d of evolucion; track d.mes) {
+      <span>{{ d.mes }}</span>
+    }
+  </div>
+</div>
+
+<!-- DONA POR CATEGORÍA -->
+<div class="cc">
+  <div class="cc-head">
+    <div class="cc-title">Por categoría</div>
+    <div class="cc-sub">Distribución de incidencias</div>
+  </div>
+  <div class="donut-layout">
+    <svg viewBox="0 0 110 110" class="donut-svg">
+      @for (seg of getSegmentos(); track seg.label) {
+        <path [attr.d]="seg.d" [attr.fill]="seg.color" opacity="0.85"/>
+      }
+      <!-- Agujero central -->
+      <circle cx="55" cy="55" r="28" fill="#0C0F18"/>
+      <text x="55" y="52" text-anchor="middle" fill="#D8E0F5"
+            font-size="10" font-family="Syne, sans-serif" font-weight="700">147</text>
+      <text x="55" y="63" text-anchor="middle" fill="#7A88AA"
+            font-size="6" font-family="monospace">total</text>
+    </svg>
+    <div class="donut-legend">
+      @for (cat of categorias; track cat.label) {
+        <div class="dl">
+          <div class="dl-left">
+            <div class="dl-dot" [style.background]="cat.color"></div>
+            {{ cat.label }}
+          </div>
+          <div class="dl-val">{{ cat.valor }}</div>
+        </div>
+      }
+    </div>
+  </div>
+</div>
+
+<!-- BARRAS TIEMPO POR CATEGORÍA -->
+<div class="cc">
+  <div class="cc-head">
+    <div class="cc-title">Tiempo de resolución</div>
+    <div class="cc-sub">Promedio por categoría (días)</div>
+  </div>
+  <div class="bar-chart">
+    @for (cat of tiempoCat; track cat.label) {
+      <div class="bar-row">
+        <div class="bar-label">{{ cat.label }}</div>
+        <div class="bar-track">
+          <div class="bar-fill"
+               [style.width.%]="getAltoBarra(cat.valor)"
+               [style.background]="cat.color">
+          </div>
+        </div>
+        <div class="bar-val" [style.color]="cat.color">{{ cat.valor }}d</div>
+      </div>
+    }
+  </div>
+</div>
+
+<!-- RANKING DE ZONAS -->
+<div class="cc">
+  <div class="cc-head">
+    <div class="cc-title">Zonas sin resolver</div>
+    <div class="cc-sub">Ranking por volumen de pendientes</div>
+  </div>
+  @for (z of zonas; track z.zona; let i = $index) {
+    <div class="zone-row">
+      <span class="zone-rk">{{ i + 1 }}</span>
+      <span class="zone-name">{{ z.zona }}</span>
+      <div class="zone-bar-wrap">
+        <div class="zone-bg">
+          <div class="zone-fill"
+               [style.width.%]="getAnchoBarra(z.pendientes)"
+               [style.background]="z.color">
+          </div>
+        </div>
+      </div>
+      <span class="zone-count" [style.color]="z.color">{{ z.pendientes }}</span>
+      <span class="zone-avg">{{ z.avg }}</span>
+    </div>
+  }
+</div>
+
+<!-- EXPORTAR -->
+<button class="export-big" (click)="exportarCSV()">
+  ⬇ Descargar datos completos (.csv)
+</button>

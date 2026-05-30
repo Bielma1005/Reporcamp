@@ -1,11 +1,14 @@
-import { Component } from '@angular/core';
+import { Component, Input, Output, EventEmitter } from '@angular/core';
+import { CommonModule } from '@angular/common';
 
 @Component({
   selector: 'app-reporte-exitoso',
-  imports: [],
+  standalone: true,
+  imports: [CommonModule],
   templateUrl: './reporte-exitoso.html',
-  styleUrl: './reporte-exitoso.scss',
+  styleUrl: './reporte-exitoso.scss'
 })
 export class ReporteExitoso {
-
+  @Input() codigo = '';
+  @Output() irAInicio = new EventEmitter<void>();
 }

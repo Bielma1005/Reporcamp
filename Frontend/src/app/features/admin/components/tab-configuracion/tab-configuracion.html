@@ -1,1 +1,66 @@
-<p>tab-configuracion works!</p>
+<div class="cfg-wrap">
+
+  <!-- CATEGORÍAS -->
+  <div class="cfg-section">
+    <div class="cfg-title">🏷️ Categorías de incidencias</div>
+    <div class="cfg-sub">Tipos de problema que los usuarios pueden reportar</div>
+    @for (c of categorias; track c.nombre) {
+      <div class="cfg-row">
+        <span class="cfg-icon">{{ c.icon }}</span>
+        <div class="cfg-body">
+          <div class="cfg-name">{{ c.nombre }}</div>
+          <div class="cfg-desc">{{ c.desc }}</div>
+        </div>
+        <span class="cfg-edit">✏️</span>
+      </div>
+    }
+    <button class="cfg-add">+ Agregar categoría</button>
+  </div>
+
+  <!-- ZONAS -->
+  <div class="cfg-section">
+    <div class="cfg-title">📍 Zonas del campus</div>
+    <div class="cfg-sub">Áreas físicas disponibles para ubicar incidencias</div>
+    <div class="zonas-grid">
+      @for (z of zonas; track z) {
+        <div class="zona-chip">{{ z }}</div>
+      }
+    </div>
+    <button class="cfg-add">+ Agregar zona</button>
+  </div>
+
+  <!-- SISTEMA -->
+  <div class="cfg-section">
+    <div class="cfg-title">⚙️ Configuración del sistema</div>
+    <div class="cfg-sub">Ajustes generales de CampusReport</div>
+    <div class="cfg-row">
+      <div class="cfg-body">
+        <div class="cfg-name">Notificaciones automáticas</div>
+        <div class="cfg-desc">Enviar email al técnico al asignar incidencia</div>
+      </div>
+      <div class="toggle on"></div>
+    </div>
+    <div class="cfg-row">
+      <div class="cfg-body">
+        <div class="cfg-name">Estadísticas públicas</div>
+        <div class="cfg-desc">Permitir acceso sin login a la vista de transparencia</div>
+      </div>
+      <div class="toggle on"></div>
+    </div>
+    <div class="cfg-row">
+      <div class="cfg-body">
+        <div class="cfg-name">Verificación obligatoria</div>
+        <div class="cfg-desc">Pedir confirmación del reportante al marcar resuelto</div>
+      </div>
+      <div class="toggle"></div>
+    </div>
+  </div>
+
+  <!-- VERSIÓN -->
+  <div class="version-info">
+    <div class="vi-logo">CampusReport</div>
+    <div class="vi-ver">v1.0.0 · Universidad del Istmo</div>
+    <div class="vi-sub">Ing. en Computación · 6to Semestre · 2025-2026B</div>
+  </div>
+
+</div>

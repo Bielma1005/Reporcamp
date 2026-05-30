@@ -1,0 +1,50 @@
+:host { display: block; background: #080A10; min-height: 100vh; padding-bottom: 90px; }
+
+// HEADER
+.header {
+  background: #0C0F18; border-bottom: 1px solid #1E2740;
+  padding: 14px 16px; display: flex; align-items: center; gap: 10px;
+  position: sticky; top: 0; z-index: 50;
+}
+.logo { font-family: 'Syne', sans-serif; font-size: 15px; font-weight: 800; color: #D8E0F5; display: flex; align-items: center; gap: 6px; em { color: #4080FF; font-style: normal; } }
+.lb   { background: #4080FF; border-radius: 5px; padding: 2px 7px; font-size: 10px; color: #fff; font-weight: 700; }
+.hsep { flex: 1; }
+.admin-tag {
+  font-family: 'DM Mono', monospace; font-size: 9px; font-weight: 500;
+  background: #F0505015; color: #F05050; border: 1px solid #F0505025;
+  border-radius: 5px; padding: 3px 8px; letter-spacing: 0.5px; text-transform: uppercase;
+}
+.av {
+  width: 28px; height: 28px; border-radius: 50%;
+  background: #4080FF18; border: 1.5px solid #4080FF;
+  color: #4080FF; display: flex; align-items: center; justify-content: center;
+  font-size: 10px; font-weight: 700; font-family: 'Syne', sans-serif;
+}
+
+// PAGE HEADER
+.pg-head  { padding: 16px 16px 12px; }
+.pg-title { font-family: 'Syne', sans-serif; font-size: 20px; font-weight: 800; letter-spacing: -0.3px; margin-bottom: 3px; color: #D8E0F5; }
+.pg-sub   { font-size: 12px; color: #7A88AA; }
+
+// SECTION TABS
+.sec-tabs {
+  display: flex; gap: 5px; overflow-x: auto; padding: 0 16px 14px; scrollbar-width: none;
+  &::-webkit-scrollbar { display: none; }
+}
+.stab {
+  flex-shrink: 0; padding: 7px 14px; border-radius: 20px; font-size: 12px; font-weight: 600;
+  background: #111520; border: 1px solid #1E2740; color: #7A88AA;
+  cursor: pointer; white-space: nowrap; transition: all 0.15s; font-family: inherit;
+  &.on  { background: #4080FF18; border-color: #4080FF; color: #4080FF; }
+  &:active { transform: scale(0.96); }
+}
+
+// FAB
+.fab {
+  position: fixed; bottom: 86px; right: 18px;
+  width: 52px; height: 52px; border-radius: 50%;
+  background: #4080FF; border: none; color: #fff; font-size: 24px;
+  cursor: pointer; display: flex; align-items: center; justify-content: center;
+  box-shadow: 0 4px 20px #4080FF50; z-index: 99; font-family: inherit;
+  &:active { transform: scale(0.9); }
+}

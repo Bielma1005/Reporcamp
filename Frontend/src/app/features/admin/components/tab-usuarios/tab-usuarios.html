@@ -1,1 +1,83 @@
-<p>tab-usuarios works!</p>
+<!-- BÚSQUEDA + FILTRO -->
+<div class="search-bar">
+  <div class="sb-in">
+    <span class="sb-ico">🔍</span>
+    <input type="text" placeholder="Buscar usuario..."
+           (input)="busqueda.set($any($event.target).value)" />
+  </div>
+</div>
+
+<div class="filter-row">
+  <select (change)="filtroRol.set($any($event.target).value)">
+    <option value="all">Todos los roles</option>
+    <option value="admin">Administrador</option>
+    <option value="tecnico">Técnico</option>
+    <option value="ciudadano">Ciudadano</option>
+    <option value="invitado">Invitado</option>
+  </select>
+</div>
+
+<!-- LISTA DE USUARIOS -->
+@for (u of usuariosFiltrados(); track u.id) {
+  <div class="ucard">
+    <div class="u-av" [style.background]="u.color + '20'" [style.color]="u.color">
+      {{ u.iniciales }}
+    </div>
+    <div class="u-body">
+      <div class="u-name">{{ u.nombre }} {{ u.apellido }}</div>
+      <div class="u-email">{{ u.correo }}</div>
+      <div class="u-row">
+        <span class="role-tag" [ngClass]="getRolClass(u.rol)">{{ getRolLabel(u.rol) }}</span>
+        <span class="stag" [class.activo]="u.activo" [class.inactivo]="!u.activo">
+          {{ u.activo ? 'Activo' : 'Inactivo' }}
+        </span>
+        @if (u.totalReportes > 0) {
+          <span class="u-rep">{{ u.totalReportes }} reportes</span>
+        }
+      </div>
+    </div>
+    <div class="u-dots">⋯</div>
+  </div>
+} @empty {
+  <div class="empty">No se encontraron usuarios</div>
+}
+
+<!-- MODAL NUEVO USUARIO -->
+@if (mostrarModal()) {
+  <div class="modal-bg" (click)="cerrarModal()">
+    <div class="modal" (click)="$event.stopPropagation()">
+      <div class="modal-drag"></div>
+      <div class="modal-h">Nuevo usuario</div>
+
+      <div class="mfield">
+        <label class="mflbl">Nombre completo</label>
+        <input class="mf" type="text" [(ngModel)]="nuevoNombre"
+               placeholder="Ej: Ana García Ruiz" />
+      </div>
+      <div class="mfield">
+        <label class="mflbl">Correo institucional</label>
+        <input class="mf" type="email" [(ngModel)]="nuevoCorreo"
+               placeholder="usuario@unistmo.edu.mx" />
+      </div>
+      <div class="mfield">
+        <label class="mflbl">Rol</label>
+        <select class="mf" [(ngModel)]="nuevoRol">
+          <option value="ciudadano">Ciudadano (alumno/docente)</option>
+          <option value="tecnico">Técnico de mantenimiento</option>
+          <option value="admin">Administrador</option>
+          <option value="invitado">Invitado</option>
+        </select>
+      </div>
+      <div class="mfield">
+        <label class="mflbl">Área / Departamento</label>
+        <input class="mf" type="text" [(ngModel)]="nuevoArea"
+               placeholder="Ej: Ing. en Computación" />
+      </div>
+
+      <div class="modal-btns">
+        <button class="btn-ghost" (click)="cerrarModal()">Cancelar</button>
+        <button class="btn-crear" (click)="crearUsuario()">Crear usuario</button>
+      </div>
+    </div>
+  </div>
+}
