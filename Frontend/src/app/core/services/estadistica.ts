@@ -41,7 +41,7 @@ export class EstadisticasService {
   constructor(private http: HttpClient) {}
 
   getEstadisticas(periodo?: string): Observable<EstadisticasGenerales> {
-    const params = periodo ? { periodo } : {};
+    const params = periodo ? { periodo } : undefined;
     return this.http.get<EstadisticasGenerales>(this.apiUrl, { params });
   }
 

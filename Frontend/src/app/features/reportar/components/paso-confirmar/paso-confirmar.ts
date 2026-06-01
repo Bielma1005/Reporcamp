@@ -1,6 +1,6 @@
 import { Component, Input } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { CategoriaIncidencia } from '../../../../../models/incidencia';
+import { CategoriaIncidencia } from '../../../../models/incidencia';
 import { DatoDescripcion } from '../paso-descripcion/paso-descripcion';
 import { DatoFoto } from '../paso-foto/paso-foto';
 

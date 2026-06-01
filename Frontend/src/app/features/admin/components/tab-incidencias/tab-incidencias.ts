@@ -2,7 +2,7 @@ import { Component, OnInit, signal, computed } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 import { Router } from '@angular/router';
-import { Incidencia, EstadoIncidencia, INCIDENCIAS_MOCK } from '../../../../../models/incidencia';
+import { Incidencia, EstadoIncidencia, INCIDENCIAS_MOCK } from '../../../../models/incidencia';
 
 @Component({
   selector: 'app-tab-incidencias',

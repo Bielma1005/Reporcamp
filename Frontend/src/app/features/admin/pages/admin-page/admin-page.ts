@@ -1,9 +1,9 @@
 import { Component, signal } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { TabIncidencias }   from '../components/tab-incidencias/tab-incidencias';
-import { TabUsuarios }      from '../components/tab-usuarios/tab-usuarios';
-import { TabTecnicos }      from '../components/tab-tecnicos/tab-tecnicos';
-import { TabConfiguracion } from '../components/tab-configuracion/tab-configuracion';
+import { TabIncidencias }   from '../../components/tab-incidencias/tab-incidencias';
+import { TabUsuarios }      from '../../components/tab-usuarios/tab-usuarios';
+import { TabTecnicos }      from '../../components/tab-tecnicos/tab-tecnicos';
+import { TabConfiguracion } from '../../components/tab-configuracion/tab-configuracion';
 
 type TabActivo = 'incidencias' | 'usuarios' | 'tecnicos' | 'config';
 

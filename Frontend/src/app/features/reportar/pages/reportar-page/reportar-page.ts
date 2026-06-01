@@ -2,11 +2,11 @@ import { Component, signal } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { Router } from '@angular/router';
 import { CategoriaIncidencia } from '../../../../models/incidencia';
-import { PasoCategoria } from '../components/paso-categoria/paso-categoria';
-import { PasoDescripcion, DatoDescripcion } from '../components/paso-descripcion/paso-descripcion';
-import { PasoFoto, DatoFoto } from '../components/paso-foto/paso-foto';
-import { PasoConfirmar } from '../components/paso-confirmar/paso-confirmar';
-import { ReporteExitoso } from '../components/reporte-exitoso/reporte-exitoso';
+import { PasoCategoria } from '../../components/paso-categoria/paso-categoria';
+import { PasoDescripcion, DatoDescripcion } from '../../components/paso-descripcion/paso-descripcion';
+import { PasoFoto, DatoFoto } from '../../components/paso-foto/paso-foto';
+import { PasoConfirmar } from '../../components/paso-confirmar/paso-confirmar';
+import { ReporteExitoso } from '../../components/reporte-exitoso/reporte-exitoso';
 
 @Component({
   selector: 'app-reportar-page',

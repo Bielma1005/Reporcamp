@@ -9,7 +9,7 @@ import {
   ActualizarIncidenciaDto,
   FiltroIncidencia,
   ResumenEstadisticas
-} from '../models/incidencia.model';
+} from '../../models/incidencia';
 
 @Injectable({ providedIn: 'root' })
 export class IncidenciaService {

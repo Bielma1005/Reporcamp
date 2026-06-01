@@ -1,6 +1,6 @@
 import { Component, OnInit, signal } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { Tecnico, TECNICOS_MOCK } from '../../../../../models/tecnico';
+import { Tecnico, TECNICOS_MOCK } from '../../../../models/tecnico';
 
 @Component({
   selector: 'app-tab-tecnicos',

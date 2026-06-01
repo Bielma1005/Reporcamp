@@ -1,6 +1,6 @@
 import { Component, Output, EventEmitter } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { CategoriaIncidencia } from '../../../../../models/incidencia';
+import { CategoriaIncidencia } from '../../../../models/incidencia';
 
 interface CatCard {
   id: CategoriaIncidencia;

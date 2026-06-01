@@ -46,6 +46,20 @@ export interface CrearIncidenciaDto {
   ubicacionExacta: string;
 }
 
+export interface ActualizarIncidenciaDto {
+  estado?: EstadoIncidencia;
+  prioridad?: PrioridadIncidencia;
+  tecnicoId?: number;
+}
+
+export interface FiltroIncidencia {
+  estado?: EstadoIncidencia | 'all';
+  categoria?: CategoriaIncidencia | 'all';
+  zona?: string;
+  busqueda?: string;
+  tecnicoId?: number;
+}
+
 export interface ResumenEstadisticas {
   total: number;
   pendientes: number;

@@ -1,7 +1,7 @@
 import { Component, OnInit, signal } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
-import { Usuario, USUARIOS_MOCK } from '../../../../../models/usuario';
+import { Usuario, USUARIOS_MOCK } from '../../../../models/usuario';
 
 @Component({
   selector: 'app-tab-usuarios',

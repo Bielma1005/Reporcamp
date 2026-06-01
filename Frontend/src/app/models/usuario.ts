@@ -14,6 +14,25 @@ export interface Usuario {
   totalReportes: number;
 }
 
+export interface LoginDto {
+  correo: string;
+  password: string;
+}
+
+export interface AuthResponse {
+  token: string;
+  usuario: Usuario;
+}
+
+export interface CrearUsuarioDto {
+  nombre: string;
+  apellido: string;
+  correo: string;
+  password: string;
+  rol: RolUsuario;
+  area: string;
+}
+
 export const USUARIOS_MOCK: Usuario[] = [
   { id: 1, nombre: 'Ana', apellido: 'Alvarado', correo: 'a.alvarado@unistmo.edu.mx', rol: 'admin', area: 'Dirección', iniciales: 'AA', color: '#F05050', activo: true, ultimoAcceso: 'Hoy 09:12', totalReportes: 0 },
   { id: 2, nombre: 'Juan', apellido: 'Martínez', correo: 'j.martinez@unistmo.edu.mx', rol: 'ciudadano', area: 'Ing. Computación', iniciales: 'JM', color: '#4080FF', activo: true, ultimoAcceso: 'Hoy 08:45', totalReportes: 4 },
