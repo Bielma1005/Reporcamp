@@ -30,7 +30,7 @@
   &:active { transform: scale(0.99); }
 
   &.has-img {
-    padding: 0;
+    padding: 0px;
     border-style: solid;
     border-color: #4080FF;
   }
@@ -57,17 +57,6 @@
   background: #4080FF10;
 }
 
-// MAPA
-.map-mini {
-  background: #0C0F18;
-  border: 1px solid #1E2740;
-  border-radius: 12px;
-  overflow: hidden;
-  cursor: crosshair;
-  position: relative;
-
-  svg { display: block; width: 100%; }
-}
 
 .pin-emoji {
   position: absolute;
@@ -81,7 +70,7 @@
 .map-note {
   text-align: center;
   padding: 8px;
-  font-size: 11px;
+  font-size: 50px;
   color: #7A88AA;
   border-top: 1px solid #1E2740;
   transition: color 0.2s;

@@ -29,54 +29,5 @@
     </div>
   </div>
 
-  <!-- MAPA -->
-  <div class="field">
-    <label class="flbl">Marca la ubicación en el mapa</label>
-    <div class="map-mini" (click)="marcarPin($event)">
-      <!-- Pin -->
-      @if (pinX !== null) {
-        <div class="pin-emoji"
-             [style.left.px]="pinX"
-             [style.top.px]="pinY">📍</div>
-      }
-      <!-- SVG Mapa -->
-      <svg viewBox="0 0 320 180" xmlns="http://www.w3.org/2000/svg">
-        <rect width="320" height="180" fill="#080A10"/>
-        <rect x="0"   y="64"  width="320" height="8" fill="#0A0D14"/>
-        <rect x="0"   y="126" width="320" height="8" fill="#0A0D14"/>
-        <rect x="64"  y="0"   width="6"   height="180" fill="#0A0D14"/>
-        <rect x="178" y="0"   width="6"   height="180" fill="#0A0D14"/>
-        <rect x="260" y="0"   width="6"   height="180" fill="#0A0D14"/>
-        <!-- Fila 1 -->
-        <rect x="6"   y="6"  width="50" height="50" rx="4" fill="#111520" stroke="#1E2740" stroke-width="1"/>
-        <text x="31"  y="33" text-anchor="middle" fill="#404E6A" font-size="7" font-family="monospace">Edif. A</text>
-        <rect x="78"  y="6"  width="92" height="50" rx="4" fill="#111520" stroke="#1E2740" stroke-width="1"/>
-        <text x="124" y="33" text-anchor="middle" fill="#404E6A" font-size="7" font-family="monospace">Rectoría</text>
-        <rect x="184" y="6"  width="68" height="50" rx="4" fill="#111520" stroke="#1E2740" stroke-width="1"/>
-        <text x="218" y="33" text-anchor="middle" fill="#404E6A" font-size="6" font-family="monospace">Lab.Cómp</text>
-        <rect x="266" y="6"  width="48" height="50" rx="4" fill="#111520" stroke="#1E2740" stroke-width="1"/>
-        <text x="290" y="33" text-anchor="middle" fill="#404E6A" font-size="6" font-family="monospace">Biblio.</text>
-        <!-- Fila 2 -->
-        <rect x="6"   y="80" width="50" height="38" rx="4" fill="#111520" stroke="#1E2740" stroke-width="1"/>
-        <text x="31"  y="102" text-anchor="middle" fill="#404E6A" font-size="6" font-family="monospace">Cafetería</text>
-        <rect x="78"  y="80" width="92" height="38" rx="4" fill="#111520" stroke="#1E2740" stroke-width="1"/>
-        <text x="124" y="102" text-anchor="middle" fill="#404E6A" font-size="6" font-family="monospace">Aula Magna</text>
-        <rect x="184" y="80" width="68" height="38" rx="4" fill="#111520" stroke="#1E2740" stroke-width="1"/>
-        <text x="218" y="102" text-anchor="middle" fill="#404E6A" font-size="6" font-family="monospace">Laborat.</text>
-        <rect x="266" y="80" width="48" height="38" rx="4" fill="#111520" stroke="#1E2740" stroke-width="1"/>
-        <text x="290" y="102" text-anchor="middle" fill="#404E6A" font-size="6" font-family="monospace">Servicios</text>
-        <!-- Fila 3 -->
-        <rect x="6"   y="142" width="50" height="32" rx="4" fill="#111520" stroke="#1E2740" stroke-width="1"/>
-        <text x="31"  y="161" text-anchor="middle" fill="#404E6A" font-size="6" font-family="monospace">Estac.</text>
-        <rect x="78"  y="142" width="92" height="32" rx="4" fill="#111520" stroke="#1E2740" stroke-width="1"/>
-        <text x="124" y="161" text-anchor="middle" fill="#404E6A" font-size="6" font-family="monospace">Edificio D</text>
-        <rect x="184" y="142" width="68" height="32" rx="4" fill="#111520" stroke="#1E2740" stroke-width="1"/>
-        <text x="218" y="161" text-anchor="middle" fill="#404E6A" font-size="6" font-family="monospace">Talleres</text>
-        <rect x="266" y="142" width="48" height="32" rx="4" fill="#071510" stroke="#1E2740" stroke-width="1"/>
-      </svg>
-      <div class="map-note" [class.marcada]="pinX !== null">
-        {{ mapaNota }}
-      </div>
-    </div>
-  </div>
+  <!-- Mapa --> 
 </div>
