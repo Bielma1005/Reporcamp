@@ -2,14 +2,12 @@
 <div class="header">
   <div class="logo"><span class="lb">CR</span> Campus<em>Report</em></div>
   <div class="hsep"></div>
-  <div class="notif">🔔<div class="ndot"></div></div>
   
 </div>
 
 <!-- SEARCH -->
 <div class="sb">
   <div class="sb-in">
-    <span class="sb-ico">🔍</span>
     <input
       type="text"
       placeholder="Buscar zona, código, descripción..."
@@ -43,6 +41,46 @@
 </div>
 
 <!-- MAPA -->
+<div class="msec">
+  <div class="secrow">
+    <span class="sectitle">🗺️ Mapa del campus</span>
+    <span class="seclink">UNISTMO</span>
+  </div>
+
+  <div class="mbox">
+    <div class="map-wrapper">
+
+      <!-- Imagen real del campus -->
+      <img
+        class="map-image"
+        [src]="mapPath"
+        alt="Mapa Campus Universidad del Istmo"
+      />
+
+      <!-- Pins sobre la imagen (posición en %) -->
+      @for (pin of pins; track pin.codigo) {
+        <button
+          class="map-pin"
+          type="button"
+          [title]="pin.zona + ' — ' + pin.codigo"
+          [style.left]="pin.x + '%'"
+          [style.top]="pin.y + '%'"
+          [style.background]="getColorPin(pin.estado)"
+          [style.boxShadow]="'0 0 0 4px ' + getColorPin(pin.estado) + '30'"
+          (click)="abrirSheetPorCodigo(pin.codigo)"
+        ></button>
+      }
+
+    </div>
+
+    <!-- Leyenda -->
+    <div class="mleg">
+      <div class="ml"><span class="mld" style="background:#F05050"></span>Pendiente</div>
+      <div class="ml"><span class="mld" style="background:#F0A030"></span>En proceso</div>
+      <div class="ml"><span class="mld" style="background:#18C96A"></span>Resuelto</div>
+    </div>
+  </div>
+</div>
 
 <!-- FILTROS -->
 <div class="chips">
@@ -81,7 +119,7 @@
 <!-- FAB -->
 <button class="fab" (click)="irAReportar()">＋</button>
 
-<!-- BOTTOM SHEET BACKDROP -->
+<!-- BOTTOM SHEET -->
 @if (mostrarSheet()) {
   <div class="sbg" (click)="cerrarSheet()"></div>
   <div class="sht">

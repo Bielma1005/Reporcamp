@@ -19,58 +19,64 @@ import {
 })
 export class InicioPage implements OnInit {
 
-  // Señales reactivas
-  incidencias = signal<Incidencia[]>([]);
-  busqueda = signal('');
-  filtroEstado = signal<EstadoIncidencia | 'all'>('all');
-  filtroCategoria = signal<CategoriaIncidencia | 'all'>('all');
+  // ── Señales reactivas ─────────────────────────────────
+  incidencias          = signal<Incidencia[]>([]);
+  busqueda             = signal('');
+  filtroEstado         = signal<EstadoIncidencia | 'all'>('all');
+  filtroCategoria      = signal<CategoriaIncidencia | 'all'>('all');
   incidenciaSeleccionada = signal<Incidencia | null>(null);
-  mostrarSheet = signal(false);
+  mostrarSheet         = signal(false);
 
-  // Computed — lista filtrada automáticamente
+  // ── Computed: lista filtrada ──────────────────────────
   incidenciasFiltradas = computed(() => {
     let lista = this.incidencias();
-    const estado = this.filtroEstado();
+    const estado    = this.filtroEstado();
     const categoria = this.filtroCategoria();
-    const busq = this.busqueda().toLowerCase();
+    const busq      = this.busqueda().toLowerCase();
 
-    if (estado !== 'all') lista = lista.filter(i => i.estado === estado);
+    if (estado    !== 'all') lista = lista.filter(i => i.estado    === estado);
     if (categoria !== 'all') lista = lista.filter(i => i.categoria === categoria);
     if (busq) lista = lista.filter(i =>
       i.titulo.toLowerCase().includes(busq) ||
-      i.zona.toLowerCase().includes(busq) ||
+      i.zona.toLowerCase().includes(busq)   ||
       i.codigo.toLowerCase().includes(busq)
     );
     return lista;
   });
 
-  // Computed — resumen
+  // ── Computed: resumen ─────────────────────────────────
   resumen = computed(() => {
     const lista = this.incidencias();
     return {
-      total:      lista.length,
+      total:     lista.length,
       pendientes: lista.filter(i => i.estado === 'pendiente').length,
       enProceso:  lista.filter(i => i.estado === 'proceso').length,
       resueltas:  lista.filter(i => i.estado === 'resuelto').length,
     };
   });
 
-  // Pins del mapa
+  // ── Mapa ──────────────────────────────────────────────
+  // Pon la imagen en: Frontend/mi-proyecto/public/mapa-campus.jpeg
+  readonly mapPath   = 'mapa-campus.jpeg';
+
+  // Pins en porcentaje (%) sobre la imagen real del campus UNISTMO
+  // Ajusta estos valores según donde queden los edificios en TU imagen
   pins = [
-    { x: 34,  y: 35,  estado: 'pendiente', codigo: 'CR-0012' },
-    { x: 230, y: 109, estado: 'proceso',   codigo: 'CR-0015' },
-    { x: 131, y: 109, estado: 'pendiente', codigo: 'CR-0011' },
-    { x: 307, y: 109, estado: 'resuelto',  codigo: 'CR-0009' },
-    { x: 131, y: 174, estado: 'pendiente', codigo: 'CR-0016' },
+    { x: 48, y: 22, estado: 'pendiente', codigo: 'CR-0012', zona: 'Rectoría'    },
+    { x: 65, y: 48, estado: 'proceso',   codigo: 'CR-0015', zona: 'Laboratorios'},
+    { x: 47, y: 55, estado: 'pendiente', codigo: 'CR-0011', zona: 'Aula Magna'  },
+    { x: 68, y: 62, estado: 'resuelto',  codigo: 'CR-0009', zona: 'Cafetería'   },
+    { x: 46, y: 70, estado: 'pendiente', codigo: 'CR-0016', zona: 'Talleres'    },
+    { x: 82, y: 38, estado: 'proceso',   codigo: 'CR-0014', zona: 'Servicios'   },
   ];
 
   constructor(private router: Router) {}
 
   ngOnInit(): void {
-    // Usar datos mock mientras no hay backend
     this.incidencias.set(INCIDENCIAS_MOCK);
   }
 
+  // ── Filtros ───────────────────────────────────────────
   setFiltroEstado(estado: EstadoIncidencia | 'all'): void {
     this.filtroEstado.set(estado);
     this.filtroCategoria.set('all');
@@ -85,6 +91,7 @@ export class InicioPage implements OnInit {
     this.busqueda.set(valor);
   }
 
+  // ── Sheet ─────────────────────────────────────────────
   abrirSheet(incidencia: Incidencia): void {
     this.incidenciaSeleccionada.set(incidencia);
     this.mostrarSheet.set(true);
@@ -109,6 +116,7 @@ export class InicioPage implements OnInit {
     this.router.navigate(['/reportar']);
   }
 
+  // ── Colores ───────────────────────────────────────────
   getColorPin(estado: string): string {
     const colores: Record<string, string> = {
       pendiente: '#F05050',
