@@ -31,7 +31,6 @@
   &:active { background: #4080FF18; }
 }
 
-// ZONAS GRID
 .zonas-grid {
   display: flex; flex-wrap: wrap; gap: 8px; margin-bottom: 4px;
 }
@@ -42,7 +41,7 @@
   &:active { border-color: #4080FF; color: #4080FF; }
 }
 
-// TOGGLE
+
 .toggle {
   width: 44px; height: 24px; border-radius: 12px;
   background: #1E2740; position: relative; cursor: pointer;
@@ -60,10 +59,10 @@
   }
 }
 
-// VERSION INFO
+
 .version-info {
   text-align: center; padding: 24px 0 8px;
 }
 .vi-logo { font-family: 'Syne', sans-serif; font-size: 16px; font-weight: 800; color: #4080FF; margin-bottom: 4px; }
-.vi-ver  { font-family: 'DM Mono', monospace; font-size: 11px; color: #404E6A; margin-bottom: 3px; }
+.vi-ver  { font-family: 'DM Mono', monospace; font-size: 11px; color: #d6d8de; margin-bottom: 3px; }
 .vi-sub  { font-size: 11px; color: #404E6A; }
