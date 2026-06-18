@@ -29,5 +29,39 @@
     </div>
   </div>
 
-  <!-- Mapa --> 
+  <!-- MAPA REAL CON PIN -->
+  <div class="field">
+    <label class="flbl">Marca la ubicación en el mapa</label>
+
+    <div class="map-mini" (click)="marcarPin($event)">
+
+      <!-- Imagen real del campus -->
+      <img
+        class="map-img"
+        src="mapa-campus.jpeg"
+        alt="Mapa campus UNISTMO"
+        draggable="false"
+      />
+
+      <!-- Pin colocado por el usuario -->
+      @if (pinX !== null) {
+        <div class="pin-marker"
+             [style.left.px]="pinX"
+             [style.top.px]="pinY">
+          <div class="pin-dot"></div>
+          <div class="pin-pulse"></div>
+        </div>
+      }
+
+    </div>
+
+    <!-- Nota debajo del mapa -->
+    <div class="map-note" [class.marcada]="pinX !== null">
+      @if (pinX === null) {
+        👆 Toca el mapa para marcar la ubicación exacta
+      } @else {
+        ✅ Ubicación marcada — toca de nuevo para mover el pin
+      }
+    </div>
+  </div>
 </div>

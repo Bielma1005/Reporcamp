@@ -20,11 +20,16 @@ export class PasoFoto {
   fotoPreview: string | null = null;
   pinX: number | null = null;
   pinY: number | null = null;
-  mapaNota = 'Toca el mapa para marcar la ubicación exacta';
+
+  // ── Foto ──────────────────────────────────────────────
+  abrirSelector(input: HTMLInputElement): void {
+    input.click();
+  }
 
   onFoto(event: Event): void {
     const file = (event.target as HTMLInputElement).files?.[0];
     if (!file) return;
+
     const reader = new FileReader();
     reader.onload = e => {
       this.fotoPreview = e.target?.result as string;
@@ -33,24 +38,24 @@ export class PasoFoto {
     reader.readAsDataURL(file);
   }
 
+  // ── Pin en el mapa ────────────────────────────────────
   marcarPin(event: MouseEvent): void {
-    const el = event.currentTarget as HTMLElement;
+    const el   = event.currentTarget as HTMLElement;
     const rect = el.getBoundingClientRect();
+
+    // Posición relativa al contenedor del mapa
     this.pinX = event.clientX - rect.left;
     this.pinY = event.clientY - rect.top;
-    this.mapaNota = '📍 Ubicación marcada correctamente';
+
     this.emitir();
   }
 
+  // ── Emitir datos al padre ─────────────────────────────
   emitir(): void {
     this.datosActualizados.emit({
       fotoPreview: this.fotoPreview,
-      pinX: this.pinX,
-      pinY: this.pinY
+      pinX:        this.pinX,
+      pinY:        this.pinY
     });
-  }
-
-  abrirSelector(input: HTMLInputElement): void {
-    input.click();
   }
 }
