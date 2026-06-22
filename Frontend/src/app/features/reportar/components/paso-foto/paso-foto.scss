@@ -67,7 +67,7 @@
   height: auto;
   display: block;
   pointer-events: none; // el click lo captura el wrapper
-  max-height: 260px;
+  max-height: auto;
   object-fit: cover;
   object-position: center top;
 }

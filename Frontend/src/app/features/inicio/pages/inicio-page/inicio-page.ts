@@ -56,13 +56,11 @@ export class InicioPage implements OnInit {
     };
   });
 
-  // ── Mapa ──────────────────────────────────────────────
-  // Pon la imagen en: Frontend/mi-proyecto/public/mapa-campus.jpeg
+  // Mapa
   readonly mapPath   = 'mapa-campus.jpeg';
   private readonly zonasCampus = ZONAS_CAMPUS_MOCK;
 
-  // Pins en porcentaje (%) sobre la imagen real del campus UNISTMO
-  // Ajusta estos valores según donde queden los edificios en TU imagen
+
   pins = [
     { x: 48, y: 22, estado: 'pendiente', codigo: 'CR-0012', zona: this.getZonaNombre('z22') },
     { x: 65, y: 48, estado: 'proceso',   codigo: 'CR-0015', zona: this.getZonaNombre('z14') },
