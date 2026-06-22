@@ -2,7 +2,7 @@
 <div class="header">
   <div class="logo"><span class="lb">CR</span> Campus<em>Report</em></div>
   <div class="hsep"></div>
-  <button class="exp-btn" (click)="exportarCSV()">⬇ .csv</button>
+  <button class="exp-btn" (click)="exportarXLS()">⬇ .xls</button>
 </div>
 
 <!-- PAGE HEADER -->
@@ -59,14 +59,14 @@
   <svg [attr.viewBox]="'0 0 ' + CHART_W + ' ' + CHART_H"
        class="line-chart">
     <!-- Grid lines -->
-    <line x1="0" [attr.y1]="CHART_H*0.25" [attr.x2]="CHART_W" [attr.y2]="CHART_H*0.25" stroke="#1E2740" stroke-width="1"/>
-    <line x1="0" [attr.y1]="CHART_H*0.5"  [attr.x2]="CHART_W" [attr.y2]="CHART_H*0.5"  stroke="#1E2740" stroke-width="1"/>
-    <line x1="0" [attr.y1]="CHART_H*0.75" [attr.x2]="CHART_W" [attr.y2]="CHART_H*0.75" stroke="#1E2740" stroke-width="1"/>
+    <line x1="0" [attr.y1]="CHART_H*0.25" [attr.x2]="CHART_W" [attr.y2]="CHART_H*0.25" stroke="#E0D5C0" stroke-width="1"/>
+    <line x1="0" [attr.y1]="CHART_H*0.5"  [attr.x2]="CHART_W" [attr.y2]="CHART_H*0.5"  stroke="#E0D5C0" stroke-width="1"/>
+    <line x1="0" [attr.y1]="CHART_H*0.75" [attr.x2]="CHART_W" [attr.y2]="CHART_H*0.75" stroke="#E0D5C0" stroke-width="1"/>
     <!-- Línea nuevas -->
     <polyline
       [attr.points]="puntosNuevas"
       fill="none"
-      stroke="#4080FF"
+      stroke="#7A1F2B"
       stroke-width="2"
       stroke-linejoin="round"
     />
@@ -83,7 +83,7 @@
       <circle
         [attr.cx]="(i / (evolucion.length-1)) * CHART_W"
         [attr.cy]="CHART_H - (d.nuevas / maxNuevas) * CHART_H"
-        r="3" fill="#4080FF"
+        r="3" fill="#7A1F2B"
       />
     }
     <!-- Puntos resueltas -->
@@ -115,10 +115,10 @@
         <path [attr.d]="seg.d" [attr.fill]="seg.color" opacity="0.85"/>
       }
       <!-- Agujero central -->
-      <circle cx="55" cy="55" r="28" fill="#0C0F18"/>
-      <text x="55" y="52" text-anchor="middle" fill="#D8E0F5"
+      <circle cx="55" cy="55" r="28" fill="#FFFCF6"/>
+      <text x="55" y="52" text-anchor="middle" fill="#2B2118"
             font-size="10" font-family="Syne, sans-serif" font-weight="700">147</text>
-      <text x="55" y="63" text-anchor="middle" fill="#7A88AA"
+      <text x="55" y="63" text-anchor="middle" fill="#8A7D68"
             font-size="6" font-family="monospace">total</text>
     </svg>
     <div class="donut-legend">
@@ -182,6 +182,6 @@
 </div>
 
 <!-- EXPORTAR -->
-<button class="export-big" (click)="exportarCSV()">
-  ⬇ Descargar datos completos (.csv)
+<button class="export-big" (click)="exportarXLS()">
+  ⬇ Descargar datos completos (.xls)
 </button>

@@ -1,9 +1,9 @@
-:host { display: block; padding-bottom: 90px; background: #080A10; min-height: 100vh; }
+:host { display: block; padding-bottom: 90px; background: #F5EFE4; min-height: 100vh; }
 
 // ── HEADER ────────────────────────────────────────────
 .header {
-  background: #0C0F18;
-  border-bottom: 1px solid #1E2740;
+  background: #FFFCF6;
+  border-bottom: 1px solid #E0D5C0;
   padding: 14px 16px;
   display: flex;
   align-items: center;
@@ -16,22 +16,22 @@
     font-family: 'Syne', sans-serif;
     font-size: 16px;
     font-weight: 800;
-    color: #D8E0F5;
+    color: #2B2118;
     display: flex;
     align-items: center;
     gap: 6px;
-    em { color: #4080FF; font-style: normal; }
+    em { color: #7A1F2B; font-style: normal; }
   }
-  .lb   { background: #4080FF; border-radius: 5px; padding: 2px 7px; font-size: 10px; color: #fff; font-weight: 700; }
+  .lb   { background: #7A1F2B; border-radius: 5px; padding: 2px 7px; font-size: 10px; color: #fff; font-weight: 700; }
   .hsep { flex: 1; }
   .notif {
     font-size: 19px; cursor: pointer; position: relative;
-    .ndot { position: absolute; top: -1px; right: -1px; width: 7px; height: 7px; border-radius: 50%; background: #F05050; border: 1.5px solid #0C0F18; }
+    .ndot { position: absolute; top: -1px; right: -1px; width: 7px; height: 7px; border-radius: 50%; background: #F05050; border: 1.5px solid #FFFCF6; }
   }
   .av {
     width: 30px; height: 30px; border-radius: 50%;
-    background: #4080FF18; border: 1.5px solid #4080FF;
-    color: #4080FF; display: flex; align-items: center; justify-content: center;
+    background: #7A1F2B18; border: 1.5px solid #7A1F2B;
+    color: #7A1F2B; display: flex; align-items: center; justify-content: center;
     font-size: 10px; font-weight: 700;
   }
 }
@@ -46,24 +46,24 @@
     font-size: 15px; z-index: 1; pointer-events: none;
   }
   input {
-    width: 100%; background: #111520; border: 1px solid #1E2740;
+    width: 100%; background: #FFFCF6; border: 1px solid #E0D5C0;
     border-radius: 12px; padding: 11px 14px 11px 40px;
-    font-size: 13px; color: #D8E0F5; font-family: inherit; outline: none;
-    &::placeholder { color: #404E6A; }
-    &:focus { border-color: #4080FF; }
+    font-size: 13px; color: #2B2118; font-family: inherit; outline: none;
+    &::placeholder { color: #8A7D68; }
+    &:focus { border-color: #7A1F2B; }
   }
 }
 
 // ── STATS ─────────────────────────────────────────────
 .stats {
   display: grid; grid-template-columns: 1fr 1fr; gap: 8px; padding: 0 16px 14px;
-  .scard { background: #0C0F18; border: 1px solid #1E2740; border-radius: 12px; padding: 14px; }
-  .slbl  { font-family: 'DM Mono', monospace; font-size: 8.5px; letter-spacing: 1.5px; color: #404E6A; text-transform: uppercase; margin-bottom: 8px; }
-  .sval  { font-family: 'Syne', sans-serif; font-size: 26px; font-weight: 800; line-height: 1; margin-bottom: 4px; color: #D8E0F5; }
+  .scard { background: #FFFCF6; border: 1px solid #E0D5C0; border-radius: 12px; padding: 14px; }
+  .slbl  { font-family: 'DM Mono', monospace; font-size: 8.5px; letter-spacing: 1.5px; color: #8A7D68; text-transform: uppercase; margin-bottom: 8px; }
+  .sval  { font-family: 'Syne', sans-serif; font-size: 26px; font-weight: 800; line-height: 1; margin-bottom: 4px; color: #2B2118; }
   .sval.red   { color: #F05050; }
   .sval.amber { color: #F0A030; }
   .sval.green { color: #18C96A; }
-  .stnd  { font-size: 10.5px; color: #7A88AA; }
+  .stnd  { font-size: 10.5px; color: #8A7D68; }
 }
 
 // ── MAPA ──────────────────────────────────────────────
@@ -71,25 +71,21 @@
 .secrow {
   display: flex; align-items: center; justify-content: space-between; margin-bottom: 10px;
 }
-.sectitle { font-family: 'Syne', sans-serif; font-size: 13px; font-weight: 700; color: #D8E0F5; }
-.seclink  { font-size: 11px; color: #4080FF; font-family: 'DM Mono', monospace; }
-
+.sectitle { font-family: 'Syne', sans-serif; font-size: 13px; font-weight: 700; color: #2B2118; }
+.seclink  { font-size: 11px; color: #7A1F2B; font-family: 'DM Mono', monospace; }
 .mbox {
-  background: #0C0F18;
-  border: 1px solid #1E2740;
+  background: #FFFCF6;
+  border: 1px solid #E0D5C0;
   border-radius: 14px;
   overflow: hidden;
 }
 
-// Wrapper relativo para posicionar los pins sobre la imagen
 .map-wrapper {
   position: relative;
   width: 100%;
-  // La altura se adapta a la imagen automáticamente
-  line-height: 0; // evita espacio extra debajo de la imagen
+  line-height: 0;
 }
 
-// Imagen del mapa real
 .map-image {
   width: 100%;
   height: auto;
@@ -98,33 +94,29 @@
   border-radius: 0;
 }
 
-// Pins posicionados en % sobre la imagen
 .map-pin {
   position: absolute;
   width: 16px;
   height: 16px;
   border-radius: 50%;
-  border: 2.5px solid #080A10;
+  border: 2.5px solid #F5EFE4;
   cursor: pointer;
   transform: translate(-50%, -50%);
   transition: transform 0.15s ease, box-shadow 0.15s ease;
   padding: 0;
-
   &:hover {
     transform: translate(-50%, -50%) scale(1.3);
   }
-
   &:active {
     transform: translate(-50%, -50%) scale(1.1);
   }
 }
 
-// Leyenda
 .mleg {
   display: flex; gap: 14px; padding: 10px 14px;
-  border-top: 1px solid #1E2740; flex-wrap: wrap;
+  border-top: 1px solid #E0D5C0; flex-wrap: wrap;
 }
-.ml  { display: flex; align-items: center; gap: 6px; font-size: 10.5px; color: #7A88AA; }
+.ml  { display: flex; align-items: center; gap: 6px; font-size: 10.5px; color: #8A7D68; }
 .mld { width: 8px; height: 8px; border-radius: 50%; display: inline-block; flex-shrink: 0; }
 
 // ── FILTROS ───────────────────────────────────────────
@@ -133,9 +125,9 @@
   &::-webkit-scrollbar { display: none; }
   .chip {
     flex-shrink: 0; padding: 7px 14px; border-radius: 20px; font-size: 12px; font-weight: 600;
-    background: #111520; border: 1.5px solid #1E2740; color: #7A88AA;
+    background: #FFFCF6; border: 1.5px solid #E0D5C0; color: #8A7D68;
     cursor: pointer; white-space: nowrap; transition: all 0.15s;
-    &.on     { background: #4080FF18; border-color: #4080FF; color: #4080FF; }
+    &.on     { background: #7A1F2B18; border-color: #7A1F2B; color: #7A1F2B; }
     &:active { transform: scale(0.96); }
   }
 }
@@ -143,32 +135,31 @@
 // ── LISTA ─────────────────────────────────────────────
 .lsec { padding: 0 16px; }
 .lrow { display: flex; align-items: center; justify-content: space-between; margin-bottom: 10px; }
-.ltitle { font-family: 'Syne', sans-serif; font-size: 13px; font-weight: 700; color: #D8E0F5; }
-.empty  { text-align: center; padding: 40px 0; color: #404E6A; font-size: 13px; }
+.ltitle { font-family: 'Syne', sans-serif; font-size: 13px; font-weight: 700; color: #2B2118; }
+.empty  { text-align: center; padding: 40px 0; color: #8A7D68; font-size: 13px; }
 
 // ── FAB ───────────────────────────────────────────────
 .fab {
   position: fixed; bottom: 86px; right: 18px;
   width: 56px; height: 56px; border-radius: 50%;
-  background: #4080FF; border: none; color: #fff; font-size: 28px;
+  background: #7A1F2B; border: none; color: #fff; font-size: 28px;
   cursor: pointer; display: flex; align-items: center; justify-content: center;
-  box-shadow: 0 4px 24px #4080FF55; z-index: 99; font-family: inherit;
+  box-shadow: 0 4px 24px #7A1F2B55; z-index: 99; font-family: inherit;
   &:active { transform: scale(0.9); }
 }
 
 // ── BOTTOM SHEET ──────────────────────────────────────
 .sbg {
   position: fixed; inset: 0;
-  background: rgba(0,0,0,0.75); z-index: 200;
+  background: rgba(0,0,0,0.45); z-index: 200;
   backdrop-filter: blur(4px);
   animation: fadein 0.2s ease;
 }
 @keyframes fadein { from { opacity: 0; } to { opacity: 1; } }
-
 .sht {
   position: fixed; bottom: 0; left: 50%; transform: translateX(-50%);
-  width: 100%; max-width: 430px; background: #0C0F18;
-  border-top: 1px solid #1E2740; border-radius: 20px 20px 0 0;
+  width: 100%; max-width: 430px; background: #FFFCF6;
+  border-top: 1px solid #E0D5C0; border-radius: 20px 20px 0 0;
   padding: 20px 20px 44px; z-index: 201;
   animation: slideup 0.22s ease;
 }
@@ -176,29 +167,26 @@
   from { transform: translateX(-50%) translateY(100%); }
   to   { transform: translateX(-50%) translateY(0);    }
 }
-
-.shdrag  { width: 36px; height: 4px; background: #1E2740; border-radius: 2px; margin: 0 auto 16px; }
-.shtitle { font-family: 'Syne', sans-serif; font-size: 15px; font-weight: 700; margin-bottom: 8px; line-height: 1.4; color: #D8E0F5; }
+.shdrag  { width: 36px; height: 4px; background: #E0D5C0; border-radius: 2px; margin: 0 auto 16px; }
+.shtitle { font-family: 'Syne', sans-serif; font-size: 15px; font-weight: 700; margin-bottom: 8px; line-height: 1.4; color: #2B2118; }
 .shchips { display: flex; gap: 6px; flex-wrap: wrap; margin-bottom: 12px; }
-.shc     { background: #111520; border: 1px solid #1E2740; border-radius: 6px; padding: 3px 9px; font-size: 11px; color: #7A88AA; }
-.shc.codigo { font-family: 'DM Mono', monospace; font-size: 10px; color: #4080FF; }
-
-.tllbl { font-family: 'DM Mono', monospace; font-size: 9px; letter-spacing: 1.5px; color: #404E6A; text-transform: uppercase; margin-bottom: 8px; }
-.tl    { padding-left: 14px; border-left: 1.5px solid #1E2740; margin-bottom: 14px; }
+.shc     { background: #F5EFE4; border: 1px solid #E0D5C0; border-radius: 6px; padding: 3px 9px; font-size: 11px; color: #8A7D68; }
+.shc.codigo { font-family: 'DM Mono', monospace; font-size: 10px; color: #7A1F2B; }
+.tllbl { font-family: 'DM Mono', monospace; font-size: 9px; letter-spacing: 1.5px; color: #8A7D68; text-transform: uppercase; margin-bottom: 8px; }
+.tl    { padding-left: 14px; border-left: 1.5px solid #E0D5C0; margin-bottom: 14px; }
 .tli {
-  position: relative; margin-bottom: 8px; font-size: 12px; line-height: 1.4; color: #D8E0F5;
+  position: relative; margin-bottom: 8px; font-size: 12px; line-height: 1.4; color: #2B2118;
   &::before {
     content: ''; width: 8px; height: 8px; border-radius: 50%;
-    background: #111520; border: 1.5px solid #404E6A;
+    background: #F5EFE4; border: 1.5px solid #8A7D68;
     position: absolute; left: -18px; top: 3px;
   }
   &.d::before { background: #18C96A; border-color: #18C96A; }
-  &.c::before { background: #4080FF; border-color: #4080FF; box-shadow: 0 0 0 3px #4080FF18; }
-  .tlid { color: #404E6A; font-family: 'DM Mono', monospace; font-size: 10px; }
+  &.c::before { background: #7A1F2B; border-color: #7A1F2B; box-shadow: 0 0 0 3px #7A1F2B18; }
+  .tlid { color: #8A7D68; font-family: 'DM Mono', monospace; font-size: 10px; }
 }
-
 .shbtn {
-  display: block; width: 100%; background: #4080FF; border: none;
+  display: block; width: 100%; background: #7A1F2B; border: none;
   border-radius: 12px; padding: 15px; font-size: 14px; font-weight: 700;
   color: #fff; cursor: pointer; font-family: inherit;
   &:active { opacity: 0.85; }

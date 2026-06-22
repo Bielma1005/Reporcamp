@@ -4,11 +4,11 @@
   left: 50%;
   transform: translateX(-50%);
   width: 100%;
-  max-width: 430px;
-  background: #0C0F18;
-  border-top: 1px solid #1E2740;
+  max-width: 600px;
+  background: #FFFCF6;
+  border-top: 1px solid #E0D5C0;
   display: flex;
-  z-index: 100;
+  z-index: 800;
 }
 
 .nav-item {
@@ -17,23 +17,27 @@
   flex-direction: column;
   align-items: center;
   padding: 10px 4px 12px;
-  gap: 4px;
+  gap: 1px;
   text-decoration: none;
   cursor: pointer;
   transition: color 0.15s;
 
   .nav-icon {
-    font-size: 21px;
+    font-size: 19px;
+    color: #8A7D68;
   }
 
   .nav-label {
-    font-size: 9.5px;
+    font-size: 9px;
     font-family: 'DM Mono', monospace;
-    color: #404E6A;
-    letter-spacing: 0.3px;
+    color: #8A7D68;
+    letter-spacing: 0.5px;
   }
 
-  &.active .nav-label {
-    color: #4080FF;
+  &.active {
+    .nav-icon,
+    .nav-label {
+      color: #7A1F2B;
+    }
   }
 }

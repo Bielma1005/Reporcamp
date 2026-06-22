@@ -7,11 +7,11 @@
   font-weight: 800;
   letter-spacing: -0.3px;
   margin-bottom: 6px;
-  color: #D8E0F5;
+  color: #2B2118;
 }
 
 .paso-sub {
-  color: #7A88AA;
+  color: #8A7D68;
   font-size: 13px;
   margin-bottom: 22px;
   line-height: 1.6;
@@ -24,8 +24,8 @@
 }
 
 .cat-card {
-  background: #0C0F18;
-  border: 1.5px solid #1E2740;
+  background: #FFFCF6;
+  border: 1.5px solid #E0D5C0;
   border-radius: 14px;
   padding: 18px 12px;
   text-align: center;
@@ -35,9 +35,9 @@
   &:active { transform: scale(0.97); }
 
   &.sel {
-    border-color: #4080FF;
-    background: #4080FF18;
-    .cn { color: #4080FF; }
+    border-color: #7A1F2B;
+    background: #7A1F2B18;
+    .cn { color: #7A1F2B; }
   }
 
   &.cat-full { grid-column: 1 / -1; }
@@ -49,12 +49,12 @@
   font-size: 13px;
   font-weight: 600;
   margin-bottom: 4px;
-  color: #D8E0F5;
+  color: #2B2118;
   transition: color 0.2s;
 }
 
 .cd {
   font-size: 11px;
-  color: #7A88AA;
+  color: #8A7D68;
   line-height: 1.4;
 }

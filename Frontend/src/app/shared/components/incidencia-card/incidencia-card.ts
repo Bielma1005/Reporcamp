@@ -27,9 +27,9 @@ export class IncidenciaCard {
       pendiente: '#F0505015',
       proceso:   '#F0A03015',
       resuelto:  '#18C96A15',
-      cerrado:   '#1E274015'
+      cerrado:   '#E0D5C015'
     };
-    return colores[this.incidencia.estado] ?? '#1E274015';
+    return colores[this.incidencia.estado] ?? '#E0D5C015';
   }
 
   getTagClass(): string {

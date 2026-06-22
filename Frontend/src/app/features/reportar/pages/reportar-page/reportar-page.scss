@@ -1,9 +1,9 @@
-:host { display: block; background: #080A10; min-height: 100vh; padding-bottom: 100px; }
+:host { display: block; background: #F5EFE4; min-height: 100vh; padding-bottom: 100px; }
 
 // HEADER
 .header {
-  background: #0C0F18;
-  border-bottom: 1px solid #1E2740;
+  background: #FFFCF6;
+  border-bottom: 1px solid #E0D5C0;
   padding: 13px 16px;
   display: flex;
   align-items: center;
@@ -15,23 +15,23 @@
 
 .back-btn {
   background: none;
-  border: 1px solid #1E2740;
+  border: 1px solid #E0D5C0;
   border-radius: 8px;
   padding: 7px 12px;
   font-size: 12px;
-  color: #7A88AA;
+  color: #8A7D68;
   cursor: pointer;
   font-family: inherit;
   transition: all 0.15s;
-  &:active { background: #111520; }
+  &:active { background: #F7F0E3; }
 }
 
 .logo {
   font-family: 'Syne', sans-serif;
   font-size: 15px;
   font-weight: 800;
-  color: #D8E0F5;
-  em { color: #4080FF; font-style: normal; }
+  color: #2B2118;
+  em { color: #7A1F2B; font-style: normal; }
 }
 
 .hsep { flex: 1; }
@@ -39,7 +39,7 @@
 .step-ind {
   font-family: 'DM Mono', monospace;
   font-size: 10px;
-  color: #404E6A;
+  color: #A38F73;
 }
 
 // PROGRESS BAR
@@ -55,11 +55,11 @@
   flex: 1;
   height: 3px;
   border-radius: 2px;
-  background: #161C2C;
+  background: #EFE4CF;
   transition: background 0.3s;
 
   &.done { background: #18C96A; }
-  &.on   { background: #4080FF; }
+  &.on   { background: #7A1F2B; }
 }
 
 .progress-labels {
@@ -70,10 +70,10 @@
 .pl {
   font-family: 'DM Mono', monospace;
   font-size: 9px;
-  color: #404E6A;
+  color: #A38F73;
   transition: color 0.3s;
 
-  &.on   { color: #4080FF; }
+  &.on   { color: #7A1F2B; }
   &.done { color: #18C96A; }
 }
 
@@ -85,8 +85,8 @@
   transform: translateX(-50%);
   width: 100%;
   max-width: 430px;
-  background: #0C0F18;
-  border-top: 1px solid #1E2740;
+  background: #FFFCF6;
+  border-top: 1px solid #E0D5C0;
   padding: 10px 10px 80px;
   display: flex;
   gap: 10px;
@@ -95,7 +95,7 @@
 
 .btn-p {
   flex: 1;
-  background: #4080FF;
+  background: #7A1F2B;
   border: none;
   border-radius: 12px;
   padding: 15px;
@@ -107,8 +107,8 @@
   transition: opacity 0.2s;
 
   &:disabled {
-    background: #161C2C;
-    color: #404E6A;
+    background: #EFE4CF;
+    color: #A38F73;
     cursor: not-allowed;
   }
 
@@ -117,15 +117,15 @@
 
 .btn-s {
   background: none;
-  border: 1px solid #1E2740;
+  border: 1px solid #E0D5C0;
   border-radius: 12px;
   padding: 15px 18px;
   font-size: 15px;
   font-weight: 600;
-  color: #7A88AA;
+  color: #8A7D68;
   cursor: pointer;
   font-family: inherit;
   transition: all 0.15s;
 
-  &:active { background: #111520; }
+  &:active { background: #F7F0E3; }
 }

@@ -1,6 +1,7 @@
 import { Component, Output, EventEmitter } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
+import { ZONAS_CAMPUS_MOCK } from '../../../../models/mapa-campus';
 
 export interface DatoDescripcion {
   zona: string;
@@ -18,11 +19,7 @@ export interface DatoDescripcion {
 export class PasoDescripcion {
   @Output() datosActualizados = new EventEmitter<DatoDescripcion>();
 
-  zonas = [
-    'Edificio A', 'Edificio B', 'Edificio C', 'Edificio D',
-    'Rectoría', 'Cafetería', 'Laboratorios', 'Biblioteca',
-    'Lab. Cómputo', 'Estacionamiento', 'Área verde', 'Servicios'
-  ];
+  zonas = ZONAS_CAMPUS_MOCK.map(zona => zona.nombre);
 
   datos: DatoDescripcion = {
     zona: '',

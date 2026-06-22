@@ -1,57 +1,57 @@
 .paso-wrap { padding: 20px 16px; animation: fin 0.2s ease; }
 @keyframes fin { from { opacity: 0; transform: translateX(10px); } to { opacity: 1; transform: translateX(0); } }
 
-.paso-h   { font-family: 'Syne', sans-serif; font-size: 20px; font-weight: 800; letter-spacing: -0.3px; margin-bottom: 6px; color: #D8E0F5; }
-.paso-sub { color: #7A88AA; font-size: 13px; margin-bottom: 22px; line-height: 1.6; }
+.paso-h   { font-family: 'Syne', sans-serif; font-size: 20px; font-weight: 800; letter-spacing: -0.3px; margin-bottom: 6px; color: #2B2118; }
+.paso-sub { color: #8A7D68; font-size: 13px; margin-bottom: 22px; line-height: 1.6; }
 
 .field { margin-bottom: 16px; }
 .flbl {
   display: block;
   font-family: 'DM Mono', monospace;
   font-size: 9px; letter-spacing: 1.8px;
-  color: #404E6A; text-transform: uppercase;
+  color: #A38F73; text-transform: uppercase;
   margin-bottom: 7px;
 }
 
 // ── UPLOAD ────────────────────────────────────────────
 .upload-zone {
-  border: 1.5px dashed #1E2740;
+  border: 1.5px dashed #E0D5C0;
   border-radius: 14px;
   padding: 28px 16px;
   text-align: center;
   cursor: pointer;
-  background: #0C0F18;
+  background: #FFFCF6;
   transition: all 0.2s;
   overflow: hidden;
 
-  &:hover  { border-color: #4080FF; background: #4080FF08; }
+  &:hover  { border-color: #7A1F2B; background: #7A1F2B08; }
   &:active { transform: scale(0.99); }
 
   &.has-img {
     padding: 0;
     border-style: solid;
-    border-color: #4080FF;
+    border-color: #7A1F2B;
   }
 }
 
 .up-content { pointer-events: none; }
 .up-ico  { font-size: 26px; margin-bottom: 8px; }
-.up-txt  { font-size: 13px; color: #7A88AA; margin-bottom: 4px; strong { color: #4080FF; } }
-.up-hint { font-size: 11px; color: #404E6A; }
+.up-txt  { font-size: 13px; color: #8A7D68; margin-bottom: 4px; strong { color: #7A1F2B; } }
+.up-hint { font-size: 11px; color: #A38F73; }
 
 .foto-preview {
   width: 100%; border-radius: 12px;
   max-height: 220px; object-fit: cover; display: block;
 }
 .foto-change {
-  padding: 8px; font-size: 11px; color: #4080FF;
-  text-align: center; background: #4080FF10;
+  padding: 8px; font-size: 11px; color: #7A1F2B;
+  text-align: center; background: #7A1F2B10;
 }
 
 // ── MAPA ──────────────────────────────────────────────
 .map-mini {
   position: relative;
-  border: 1px solid #1E2740;
+  border: 1px solid #E0D5C0;
   border-radius: 12px;
   overflow: hidden;
   cursor: crosshair;
@@ -84,7 +84,7 @@
   width: 14px;
   height: 14px;
   border-radius: 50%;
-  background: #4080FF;
+  background: #7A1F2B;
   border: 2.5px solid #fff;
   box-shadow: 0 2px 8px rgba(0,0,0,0.5);
   position: relative;
@@ -98,7 +98,7 @@
   transform: translate(-50%, -50%);
   width: 28px; height: 28px;
   border-radius: 50%;
-  background: #4080FF30;
+  background: #7A1F2B30;
   animation: pulse 1.5s ease-out infinite;
   z-index: 1;
 }
@@ -112,7 +112,7 @@
 .map-note {
   margin-top: 8px;
   font-size: 11.5px;
-  color: #7A88AA;
+  color: #8A7D68;
   text-align: center;
   line-height: 1.5;
   transition: color 0.2s;

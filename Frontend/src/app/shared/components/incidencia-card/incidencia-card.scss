@@ -1,6 +1,6 @@
 .icard {
-  background: #0C0F18;
-  border: 1px solid #1E2740;
+  background: #FFFCF6;
+  border: 1px solid #E0D5C0;
   border-radius: 14px;
   padding: 14px;
   margin-bottom: 10px;
@@ -11,8 +11,8 @@
   transition: border-color 0.15s, background 0.15s;
 
   &:active {
-    border-color: #4080FF;
-    background: #111520;
+    border-color: #7A1F2B;
+    background: #F7F0E3;
   }
 }
 
@@ -37,7 +37,7 @@
   font-weight: 600;
   margin-bottom: 5px;
   line-height: 1.35;
-  color: #D8E0F5;
+  color: #2B2118;
   white-space: nowrap;
   overflow: hidden;
   text-overflow: ellipsis;
@@ -52,13 +52,13 @@
 
 .izone {
   font-size: 11px;
-  color: #7A88AA;
+  color: #8A7D68;
 }
 
 .idate {
   font-family: 'DM Mono', monospace;
   font-size: 10px;
-  color: #404E6A;
+  color: #A38F73;
 }
 
 .stag {
@@ -73,11 +73,11 @@
   &.tag-pendiente { background: #F0505015; color: #F05050; }
   &.tag-proceso   { background: #F0A03015; color: #F0A030; }
   &.tag-resuelto  { background: #18C96A15; color: #18C96A; }
-  &.tag-cerrado   { background: #1E274040; color: #7A88AA; }
+  &.tag-cerrado   { background: #E0D5C040; color: #8A7D68; }
 }
 
 .iarr {
-  color: #404E6A;
+  color: #A38F73;
   font-size: 18px;
   align-self: center;
   flex-shrink: 0;

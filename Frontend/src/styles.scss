@@ -11,14 +11,14 @@
 
 /* ── Base ────────────────────────────────────────────── */
 html {
-  background: #080A10;
+  background: #F5EFE4;
   -webkit-text-size-adjust: 100%;
 }
 
 body {
   font-family: 'Instrument Sans', sans-serif;
-  background: #080A10;
-  color: #D8E0F5;
+  background: #F5EFE4;
+  color: #2B2118;
   font-size: 14px;
   line-height: 1.5;
   width: 100%;
@@ -30,25 +30,25 @@ body {
 
 /* ── Variables CSS ───────────────────────────────────── */
 :root {
-  --bg:      #080A10;
-  --s1:      #0C0F18;
-  --s2:      #111520;
-  --s3:      #161C2C;
-  --bd:      #1E2740;
-  --bd2:     #2A3555;
-  --tx:      #D8E0F5;
-  --sub:     #7A88AA;
-  --dim:     #404E6A;
-  --blue:    #4080FF;
-  --bluef:   #4080FF18;
-  --blueb:   #4080FF35;
+  --bg:      #F5EFE4;
+  --s1:      #FFFCF6;
+  --s2:      #F7F0E3;
+  --s3:      #EFE4CF;
+  --bd:      #E0D5C0;
+  --bd2:     #D8C9A8;
+  --tx:      #2B2118;
+  --sub:     #8A7D68;
+  --dim:     #A38F73;
+  --blue:    #7A1F2B;
+  --bluef:   #7A1F2B18;
+  --blueb:   #7A1F2B35;
   --green:   #18C96A;
   --greenf:  #18C96A15;
   --amber:   #F0A030;
   --amberf:  #F0A03015;
   --red:     #F05050;
   --redf:    #F0505015;
-  --teal:    #10C8B0;
+  --teal:    #7A1F2B;
 }
 
 /* ── Tipografía ──────────────────────────────────────── */
@@ -62,7 +62,7 @@ h1, h2, h3 {
 /* ── Scrollbar ───────────────────────────────────────── */
 ::-webkit-scrollbar       { width: 4px; height: 4px; }
 ::-webkit-scrollbar-track { background: transparent; }
-::-webkit-scrollbar-thumb { background: var(--bd2); border-radius: 2px; }
+::-webkit-scrollbar-thumb { background: var(--bd); border-radius: 2px; }
 
 /* ── Inputs globales ─────────────────────────────────── */
 input, select, textarea, button {

@@ -47,24 +47,31 @@ export class TabUsuarios implements OnInit {
   cerrarModal(): void { this.mostrarModal.set(false); }
 
   crearUsuario(): void {
-    if (!this.nuevoNombre || !this.nuevoCorreo) return;
+    if (!this.nuevoNombre.trim() || !this.nuevoCorreo.trim()) {
+      window.alert('Completa nombre y correo para crear el usuario.');
+      return;
+    }
+
     const nuevo: Usuario = {
       id: Date.now(),
-      nombre: this.nuevoNombre,
+      nombre: this.nuevoNombre.trim(),
       apellido: '',
-      correo: this.nuevoCorreo,
+      correo: this.nuevoCorreo.trim(),
       rol: this.nuevoRol as any,
-      area: this.nuevoArea,
-      iniciales: this.nuevoNombre.substring(0, 2).toUpperCase(),
-      color: '#4080FF',
+      area: this.nuevoArea.trim(),
+      iniciales: this.nuevoNombre.trim().substring(0, 2).toUpperCase(),
+      color: '#7A1F2B',
       activo: true,
       ultimoAcceso: 'Ahora',
       totalReportes: 0
     };
+
     this.usuarios.update(list => [...list, nuevo]);
     this.cerrarModal();
     this.nuevoNombre = '';
     this.nuevoCorreo = '';
     this.nuevoArea   = '';
+
+    window.alert('Usuario creado correctamente.');
   }
 }

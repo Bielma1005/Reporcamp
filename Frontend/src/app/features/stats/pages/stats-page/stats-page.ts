@@ -2,6 +2,7 @@ import { Component, OnInit, signal } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { Router } from '@angular/router';
 import { INCIDENCIAS_MOCK } from '../../../../models/incidencia';
+import { ZONAS_CAMPUS_MOCK } from '../../../../models/mapa-campus';
 
 interface DatoMensual { mes: string; nuevas: number; resueltas: number; }
 interface DatoZona    { zona: string; pendientes: number; total: number; avg: string; color: string; }
@@ -18,6 +19,7 @@ export class StatsPage implements OnInit {
 
   periodo = signal<string>('Mayo 2025');
   periodos = ['7 días', 'Mayo 2025', '2025', 'Histórico'];
+  private readonly zonasCampus = ZONAS_CAMPUS_MOCK;
 
   // ── Métricas ─────────────────────────────────────────
   total      = signal(147);
@@ -37,24 +39,24 @@ export class StatsPage implements OnInit {
   ];
 
   categorias: DatoCategoria[] = [
-    { label: 'Infraestructura', valor: 48, color: '#4080FF' },
+    { label: 'Infraestructura', valor: 48, color: '#7A1F2B' },
     { label: 'Servicios',       valor: 61, color: '#F0A030' },
     { label: 'Limpieza',        valor: 38, color: '#10C8B0' },
   ];
 
   tiempoCat: DatoCategoria[] = [
-    { label: 'Infraestructura', valor: 5.8, color: '#4080FF' },
+    { label: 'Infraestructura', valor: 5.8, color: '#7A1F2B' },
     { label: 'Servicios',       valor: 3.4, color: '#F0A030' },
     { label: 'Limpieza',        valor: 2.1, color: '#10C8B0' },
   ];
 
   zonas: DatoZona[] = [
-    { zona: 'Laboratorios',    pendientes: 8, total: 22, avg: '5.2d', color: '#F05050' },
-    { zona: 'Edificio A',      pendientes: 6, total: 18, avg: '3.8d', color: '#F0A030' },
-    { zona: 'Cafetería',       pendientes: 5, total: 15, avg: '2.1d', color: '#F0A030' },
-    { zona: 'Estacionamiento', pendientes: 4, total: 12, avg: '6.5d', color: '#F05050' },
-    { zona: 'Edificio C',      pendientes: 3, total: 20, avg: '3.2d', color: '#18C96A' },
-    { zona: 'Rectoría',        pendientes: 2, total: 10, avg: '2.8d', color: '#18C96A' },
+    { zona: this.zonasCampus.find(z => z.id === 'z14')?.nombre ?? 'Laboratorios de quimica', pendientes: 8, total: 22, avg: '5.2d', color: '#F05050' },
+    { zona: this.zonasCampus.find(z => z.id === 'z07')?.nombre ?? 'Aulas y baños', pendientes: 6, total: 18, avg: '3.8d', color: '#F0A030' },
+    { zona: this.zonasCampus.find(z => z.id === 'z16')?.nombre ?? 'Cafeteria', pendientes: 5, total: 15, avg: '2.1d', color: '#F0A030' },
+    { zona: this.zonasCampus.find(z => z.id === 'z27')?.nombre ?? 'Estacionamiento', pendientes: 4, total: 12, avg: '6.5d', color: '#F05050' },
+    { zona: this.zonasCampus.find(z => z.id === 'z13')?.nombre ?? 'Biblioteca', pendientes: 3, total: 20, avg: '3.2d', color: '#18C96A' },
+    { zona: this.zonasCampus.find(z => z.id === 'z22')?.nombre ?? 'Rectoría, sala de reuniones y oficina de redes', pendientes: 2, total: 10, avg: '2.8d', color: '#18C96A' },
   ];
 
   // ── Gráfica de líneas (coordenadas SVG) ──────────────
@@ -115,17 +117,17 @@ export class StatsPage implements OnInit {
   // ── Periodo ──────────────────────────────────────────
   setPeriodo(p: string): void { this.periodo.set(p); }
 
-  // ── Exportar CSV ─────────────────────────────────────
-  exportarCSV(): void {
+  // ── Exportar XLS ─────────────────────────────────────
+  exportarXLS(): void {
     const rows = [
       ['Zona', 'Pendientes', 'Total', 'T.Prom'],
       ...this.zonas.map(z => [z.zona, z.pendientes, z.total, z.avg])
     ];
-    const csv  = rows.map(r => r.join(',')).join('\n');
-    const blob = new Blob([csv], { type: 'text/csv' });
-    const a    = document.createElement('a');
-    a.href     = URL.createObjectURL(blob);
-    a.download = `campusreport-${this.periodo()}.csv`;
+    const xls = rows.map(r => r.join('\t')).join('\n');
+    const blob = new Blob([xls], { type: 'application/vnd.ms-excel;charset=utf-8' });
+    const a = document.createElement('a');
+    a.href = URL.createObjectURL(blob);
+    a.download = `campusreport-${this.periodo()}.xls`;
     a.click();
   }
 }

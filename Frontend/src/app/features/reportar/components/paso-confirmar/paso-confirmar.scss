@@ -1,12 +1,12 @@
 .paso-wrap { padding: 20px 16px; animation: fin 0.2s ease; }
 @keyframes fin { from { opacity: 0; transform: translateX(10px); } to { opacity: 1; transform: translateX(0); } }
 
-.paso-h { font-family: 'Syne', sans-serif; font-size: 20px; font-weight: 800; letter-spacing: -0.3px; margin-bottom: 6px; color: #D8E0F5; }
-.paso-sub { color: #7A88AA; font-size: 13px; margin-bottom: 22px; line-height: 1.6; }
+.paso-h { font-family: 'Syne', sans-serif; font-size: 20px; font-weight: 800; letter-spacing: -0.3px; margin-bottom: 6px; color: #2B2118; }
+.paso-sub { color: #8A7D68; font-size: 13px; margin-bottom: 22px; line-height: 1.6; }
 
 .confirm-card {
-  background: #0C0F18;
-  border: 1px solid #1E2740;
+  background: #FFFCF6;
+  border: 1px solid #E0D5C0;
   border-radius: 14px;
   overflow: hidden;
   margin-bottom: 16px;
@@ -17,7 +17,7 @@
   justify-content: space-between;
   align-items: flex-start;
   padding: 13px 14px;
-  border-bottom: 1px solid #1E2740;
+  border-bottom: 1px solid #E0D5C0;
   gap: 12px;
 
   &:last-child { border: none; }
@@ -25,7 +25,7 @@
 
 .cflbl {
   font-size: 12px;
-  color: #7A88AA;
+  color: #8A7D68;
   flex-shrink: 0;
   padding-top: 1px;
 }
@@ -36,7 +36,7 @@
   text-align: right;
   max-width: 210px;
   line-height: 1.4;
-  color: #D8E0F5;
+  color: #2B2118;
 
   &.ok { color: #18C96A; }
 }
@@ -44,7 +44,7 @@
 .foto-preview-wrap {
   border-radius: 12px;
   overflow: hidden;
-  border: 1px solid #1E2740;
+  border: 1px solid #E0D5C0;
 }
 
 .foto-preview {

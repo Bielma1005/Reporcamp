@@ -1,5 +1,6 @@
 import { Component } from '@angular/core';
 import { CommonModule } from '@angular/common';
+import { ZONAS_CAMPUS_MOCK } from '../../../../models/mapa-campus';
 
 @Component({
   selector: 'app-tab-configuracion',
@@ -9,11 +10,7 @@ import { CommonModule } from '@angular/common';
   styleUrl: './tab-configuracion.scss'
 })
 export class TabConfiguracion {
-  zonas = [
-    'Edificio A', 'Edificio B', 'Edificio C', 'Edificio D',
-    'Rectoría', 'Cafetería', 'Laboratorios', 'Biblioteca',
-    'Lab. Cómputo', 'Estacionamiento', 'Área verde', 'Servicios'
-  ];
+  zonas = ZONAS_CAMPUS_MOCK.map(zona => zona.nombre);
 
   categorias = [
     { nombre: 'Infraestructura', icon: '🏗️', desc: 'Paredes, techos, puertas, mobiliario' },

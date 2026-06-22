@@ -3,6 +3,7 @@ import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 import { Router } from '@angular/router';
 import { IncidenciaCard } from '../../../../shared/components/incidencia-card/incidencia-card';
+import { ZONAS_CAMPUS_MOCK } from '../../../../models/mapa-campus';
 import {
   Incidencia,
   EstadoIncidencia,
@@ -58,22 +59,27 @@ export class InicioPage implements OnInit {
   // ── Mapa ──────────────────────────────────────────────
   // Pon la imagen en: Frontend/mi-proyecto/public/mapa-campus.jpeg
   readonly mapPath   = 'mapa-campus.jpeg';
+  private readonly zonasCampus = ZONAS_CAMPUS_MOCK;
 
   // Pins en porcentaje (%) sobre la imagen real del campus UNISTMO
   // Ajusta estos valores según donde queden los edificios en TU imagen
   pins = [
-    { x: 48, y: 22, estado: 'pendiente', codigo: 'CR-0012', zona: 'Rectoría'    },
-    { x: 65, y: 48, estado: 'proceso',   codigo: 'CR-0015', zona: 'Laboratorios'},
-    { x: 47, y: 55, estado: 'pendiente', codigo: 'CR-0011', zona: 'Aula Magna'  },
-    { x: 68, y: 62, estado: 'resuelto',  codigo: 'CR-0009', zona: 'Cafetería'   },
-    { x: 46, y: 70, estado: 'pendiente', codigo: 'CR-0016', zona: 'Talleres'    },
-    { x: 82, y: 38, estado: 'proceso',   codigo: 'CR-0014', zona: 'Servicios'   },
+    { x: 48, y: 22, estado: 'pendiente', codigo: 'CR-0012', zona: this.getZonaNombre('z22') },
+    { x: 65, y: 48, estado: 'proceso',   codigo: 'CR-0015', zona: this.getZonaNombre('z14') },
+    { x: 47, y: 55, estado: 'pendiente', codigo: 'CR-0011', zona: this.getZonaNombre('z13') },
+    { x: 68, y: 62, estado: 'resuelto',  codigo: 'CR-0009', zona: this.getZonaNombre('z16') },
+    { x: 46, y: 70, estado: 'pendiente', codigo: 'CR-0016', zona: this.getZonaNombre('z24') },
+    { x: 82, y: 38, estado: 'proceso',   codigo: 'CR-0014', zona: this.getZonaNombre('z12') },
   ];
 
   constructor(private router: Router) {}
 
   ngOnInit(): void {
     this.incidencias.set(INCIDENCIAS_MOCK);
+  }
+
+  private getZonaNombre(id: string): string {
+    return this.zonasCampus.find(zona => zona.id === id)?.nombre ?? id;
   }
 
   // ── Filtros ───────────────────────────────────────────
@@ -123,6 +129,6 @@ export class InicioPage implements OnInit {
       proceso:   '#F0A030',
       resuelto:  '#18C96A'
     };
-    return colores[estado] ?? '#7A88AA';
+    return colores[estado] ?? '#8A7D68';
   }
 }
