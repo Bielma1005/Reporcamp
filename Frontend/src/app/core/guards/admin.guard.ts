@@ -17,3 +17,4 @@ export const adminGuard: CanActivateFn = () => {
   router.navigate(['/inicio']);
   return false;
 };
+
