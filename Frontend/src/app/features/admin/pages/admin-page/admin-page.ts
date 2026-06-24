@@ -39,9 +39,5 @@ export class AdminPage {
 
   setTab(id: TabActivo): void { this.tabActivo.set(id); }
 
-  // Botón FAB: acción según el tab activo
-  onFab(): void {
-    // En producción: abrir modal según el tab
-    console.log('FAB presionado en tab:', this.tabActivo());
-  }
+  
 }

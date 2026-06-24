@@ -39,12 +39,3 @@
   &:active { transform: scale(0.96); }
 }
 
-// FAB
-.fab {
-  position: fixed; bottom: 86px; right: 18px;
-  width: 52px; height: 52px; border-radius: 50%;
-  background: #7A1F2B; border: none; color: #fff; font-size: 24px;
-  cursor: pointer; display: flex; align-items: center; justify-content: center;
-  box-shadow: 0 4px 20px #7A1F2B50; z-index: 99; font-family: inherit;
-  &:active { transform: scale(0.9); }
-}
