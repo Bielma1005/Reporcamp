@@ -7,6 +7,8 @@ import { PasoDescripcion, DatoDescripcion } from '../../components/paso-descripc
 import { PasoFoto, DatoFoto } from '../../components/paso-foto/paso-foto';
 import { PasoConfirmar } from '../../components/paso-confirmar/paso-confirmar';
 import { ReporteExitoso } from '../../components/reporte-exitoso/reporte-exitoso';
+import { IncidenciaService } from '../../../../core/services/incidencias';
+
 
 @Component({
   selector: 'app-reportar-page',
@@ -33,6 +35,7 @@ export class ReportarPage {
   descripcion = signal<DatoDescripcion>({ zona: '', ubicacionExacta: '', descripcion: '' });
   foto = signal<DatoFoto>({ fotoPreview: null, pinX: null, pinY: null });
   codigoGenerado = signal('');
+  errorPaso = signal('');
 
   pasos = [
     { n: 1, label: 'Categoría'   },
@@ -41,17 +44,31 @@ export class ReportarPage {
     { n: 4, label: 'Confirmar'   },
   ];
 
-  constructor(private router: Router) {}
-
+  constructor(
+  private router: Router,
+  private incidenciaService: IncidenciaService
+) {}
   // ── Navegación ────────────────────────────────────────
   siguiente(): void {
-    if (this.paso() < 4) {
-      this.paso.update(p => p + 1);
-      return;
-    }
-    this.enviar();
+  if (!this.puedeAvanzar()) {
+    this.mostrarError();
+    return;
   }
+  this.errorPaso.set('');
+  if (this.paso() < 4) {
+    this.paso.update(p => p + 1);
+    return;
+  }
+  this.enviar();
+}
 
+mostrarError(): void {
+  switch (this.paso()) {
+    case 1: this.errorPaso.set('Selecciona una categoría para continuar.'); break;
+    case 2: this.errorPaso.set('Completa la zona y la descripción para continuar.'); break;
+    default: this.errorPaso.set('');
+  }
+}
   anterior(): void {
     if (this.paso() > 1) this.paso.update(p => p - 1);
     else this.router.navigate(['/inicio']);
@@ -90,15 +107,29 @@ export class ReportarPage {
 
   // ── Envío ─────────────────────────────────────────────
   enviar(): void {
-    this.cargando.set(true);
-    // Simulación: en producción aquí llamas al servicio HTTP
-    setTimeout(() => {
-      const codigo = 'CR-0' + (Math.floor(Math.random() * 900) + 100);
-      this.codigoGenerado.set(codigo);
+  this.cargando.set(true);
+
+  const datos = {
+    categoria: this.categoria(),
+    zona: this.descripcion().zona,
+    ubicacion: this.descripcion().ubicacionExacta,
+    descripcion: this.descripcion().descripcion
+  };
+
+  this.incidenciaService.crear(datos as any).subscribe({
+    next: (respuesta: any) => {
+      this.codigoGenerado.set(respuesta.codigo);
       this.enviado.set(true);
       this.cargando.set(false);
-    }, 1200);
-  }
+    },
+
+    error: (error) => {
+      console.error('Error al guardar incidencia:', error);
+      alert('No se pudo guardar la incidencia');
+      this.cargando.set(false);
+    }
+  });
+}
 
   irAInicio(): void {
     this.router.navigate(['/inicio']);

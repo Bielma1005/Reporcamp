@@ -12,7 +12,8 @@ export class AuthService {
   usuario$ = this._usuario$.asObservable();
 
   constructor(private http: HttpClient, private router: Router) {
-    const stored = this.safeGetItem('usuario');
+   // this.entrarComoAdmin();   
+     const stored = this.safeGetItem('usuario');
     if (stored) {
       try {
         this._usuario$.next(JSON.parse(stored));

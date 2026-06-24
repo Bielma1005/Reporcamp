@@ -1,4 +1,3 @@
-<!-- MINI STATS -->
 <div class="mini-stats">
   <div class="ms"><div class="mslbl">Total</div><div class="msval">{{ resumen().total }}</div></div>
   <div class="ms"><div class="mslbl">Pendientes</div><div class="msval red">{{ resumen().pendientes }}</div></div>
@@ -6,16 +5,14 @@
   <div class="ms"><div class="mslbl">Resueltas hoy</div><div class="msval green">{{ resumen().hoy }}</div></div>
 </div>
 
-<!-- BÚSQUEDA -->
 <div class="search-bar">
   <div class="sb-in">
     <span class="sb-ico">🔍</span>
     <input type="text" placeholder="Buscar incidencia, código..."
-           (input)="onBuscar($any($event.target).value)" />
+      (input)="onBuscar($any($event.target).value)" />
   </div>
 </div>
 
-<!-- FILTROS -->
 <div class="filter-row">
   <select (change)="setEst($any($event.target).value)">
     <option value="all">Todos los estados</option>
@@ -31,31 +28,36 @@
   </select>
 </div>
 
-<!-- LISTA -->
 @for (inc of filtradas(); track inc.id) {
   <div class="icard" (click)="verDetalle(inc)">
     <div class="ic-top">
       <div>
         <div class="ic-code">{{ inc.codigo }}</div>
-        <div class="ic-title">{{ inc.titulo }}</div>
+        <div class="ic-title">{{ inc.categoria }} — {{ inc.zona }}</div>
       </div>
-      <span class="stag" [ngClass]="getTagClass(inc.estado)">
-        {{ getTagLabel(inc.estado) }}
-      </span>
+      <select class="estado-select" [ngClass]="getTagClass(inc.estado)"
+        [value]="inc.estado"
+        (change)="cambiarEstado(inc, $any($event.target).value)"
+        (click)="$event.stopPropagation()">
+        <option value="pendiente">Pendiente</option>
+        <option value="proceso">En proceso</option>
+        <option value="resuelto">Resuelto</option>
+      </select>
     </div>
     <div class="ic-bottom">
       <span class="ic-zone">📍 {{ inc.zona }}</span>
-      <span class="ic-tec" [class.noasign]="tieneTecnico(inc)">
-        {{ inc.tecnicoNombre ?? 'Sin asignar' }}
-        @if (tieneTecnico(inc)) {
-          <span class="assign-btn">Asignar</span>
-        }
-      </span>
-      <span [ngClass]="getPrioClass(inc.prioridad)">
-        {{ getPrioLabel(inc.prioridad) }}
+      <span class="ic-tec" [class.noasign]="!inc.personal_asignado">
+        <select
+          (click)="$event.stopPropagation()"
+          (change)="asignarTecnico(inc, $any($event.target).value)">
+          <option value="">{{ inc.personal_asignado ?? 'Sin asignar' }}</option>
+          @for (t of tecnicos(); track t.id) {
+            <option [value]="t.nombre">{{ t.nombre }}</option>
+          }
+        </select>
       </span>
     </div>
   </div>
 } @empty {
-  <div class="empty">No hay incidencias con este filtro</div>
+  <div class="empty">No hay incidencias con estos filtros</div>
 }

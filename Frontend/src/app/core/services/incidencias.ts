@@ -8,7 +8,8 @@ import {
   CrearIncidenciaDto,
   ActualizarIncidenciaDto,
   FiltroIncidencia,
-  ResumenEstadisticas
+  ResumenEstadisticas,
+  IncidenciaBackend 
 } from '../../models/incidencia';
 
 @Injectable({ providedIn: 'root' })
@@ -52,6 +53,14 @@ export class IncidenciaService {
   // Actualizar estado, prioridad o técnico
   actualizar(id: number, dto: ActualizarIncidenciaDto): Observable<Incidencia> {
     return this.http.patch<Incidencia>(`${this.apiUrl}/${id}`, dto);
+  }
+  // El admin puede cambiar el estado de la incidencia directamente
+  cambiarEstado(id: number, estado: string): Observable<IncidenciaBackend> {
+  return this.http.patch<IncidenciaBackend>(`${this.apiUrl}/${id}/estado`, { estado });
+  }
+  // Asignar personal a la incidencia
+  asignarPersonal(id: number, personal_asignado: string): Observable<IncidenciaBackend> {
+  return this.http.patch<IncidenciaBackend>(`${this.apiUrl}/${id}/asignar`, { personal_asignado });
   }
 
   // Agregar comentario

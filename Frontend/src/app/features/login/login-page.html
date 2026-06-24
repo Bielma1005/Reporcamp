@@ -1,0 +1,17 @@
+<div class="login-wrap">
+  <div class="login-card">
+    <div class="login-logo">CR</div>
+    <h2 class="login-title">CampusReport</h2>
+    <p class="login-sub">Panel Administrativo</p>
+
+    <input type="text" placeholder="Usuario" [(ngModel)]="username" />
+    <input type="password" placeholder="Contraseña" [(ngModel)]="password"
+      (keydown.enter)="login()" />
+
+    @if (error) {
+      <div class="login-error">{{ error }}</div>
+    }
+
+    <button class="btn-login" (click)="login()">Iniciar sesión</button>
+  </div>
+</div>

@@ -68,6 +68,16 @@ export interface ResumenEstadisticas {
   tiempoPromedio: number;
   tasaResolucion: number;
 }
+export interface IncidenciaBackend {
+  id: number;
+  codigo: string;
+  categoria: string;
+  zona: string;
+  ubicacion: string;
+  descripcion: string;
+  estado: string;
+  personal_asignado: string | null;
+}
 
 // Datos mock para desarrollo sin backend
 export const INCIDENCIAS_MOCK: Incidencia[] = [

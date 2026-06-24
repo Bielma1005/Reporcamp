@@ -56,6 +56,9 @@
   }
 
   <!-- BARRA DE BOTONES -->
+   @if (errorPaso()) {
+  <div class="alerta-error">⚠️ {{ errorPaso() }}</div>
+}
   <div class="bottom-bar">
     @if (paso() > 1) {
       <button class="btn-s" (click)="anterior()">←</button>
